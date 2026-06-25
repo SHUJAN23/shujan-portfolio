@@ -1,0 +1,50 @@
+[
+  {
+    "category": "Game Development",
+    "icon": "gamepad",
+    "skills": [
+      { "name": "Unity",               "level": 90 },
+      { "name": "C#",                  "level": 85 },
+      { "name": "Gameplay Programming","level": 80 },
+      { "name": "Physics Systems",     "level": 75 },
+      { "name": "AI & State Machines", "level": 72 },
+      { "name": "Level Design",        "level": 80 }
+    ]
+  },
+  {
+    "category": "3D Art & Technical Art",
+    "icon": "box",
+    "skills": [
+      { "name": "Blender",             "level": 88 },
+      { "name": "3D Modelling",        "level": 85 },
+      { "name": "UV Unwrapping",       "level": 80 },
+      { "name": "PBR Texturing",       "level": 78 },
+      { "name": "Rigging",             "level": 65 },
+      { "name": "Shader Development",  "level": 60 }
+    ]
+  },
+  {
+    "category": "Web & Interactive",
+    "icon": "globe",
+    "skills": [
+      { "name": "React",               "level": 82 },
+      { "name": "Three.js / R3F",      "level": 70 },
+      { "name": "Tailwind CSS",        "level": 85 },
+      { "name": "JavaScript",          "level": 80 },
+      { "name": "Framer Motion",       "level": 72 },
+      { "name": "Vite",                "level": 75 }
+    ]
+  },
+  {
+    "category": "Tools & Pipeline",
+    "icon": "tool",
+    "skills": [
+      { "name": "Git & GitHub",        "level": 80 },
+      { "name": "Unity Profiler",      "level": 74 },
+      { "name": "Substance Painter",   "level": 55 },
+      { "name": "Figma",               "level": 60 },
+      { "name": "VS Code",             "level": 88 },
+      { "name": "Vercel",              "level": 70 }
+    ]
+  }
+]

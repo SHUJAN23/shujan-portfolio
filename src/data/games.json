@@ -1,0 +1,100 @@
+[
+  {
+    "id": "demolition-derby-survival",
+    "title": "Demolition Derby Survival",
+    "description": "Vehicle combat survival game developed in Unity featuring AI opponents, a dynamic vehicle damage system, and deep gameplay systems.",
+    "thumbnail": "",
+    "engine": "Unity",
+    "technologies": ["C#", "Unity", "Blender", "AI Systems"],
+    "featured": true,
+    "video": {
+      "url": "",
+      "poster": "",
+      "duration": "1:24",
+      "label": "Gameplay Demo"
+    },
+    "breakdown": [
+      {
+        "id": "ai",
+        "label": "AI Systems",
+        "icon": "cpu",
+        "summary": "State-machine-driven enemy AI with dynamic difficulty scaling.",
+        "details": "Built a finite state machine for opponent AI covering idle, chase, attack, and evade states. Implemented difficulty scaling that adjusts opponent aggression and reaction time based on player survival time. Used Unity's NavMesh for pathfinding within the arena."
+      },
+      {
+        "id": "damage",
+        "label": "Vehicle Damage System",
+        "icon": "wrench",
+        "summary": "Procedural mesh deformation tied to physics collision force.",
+        "details": "Designed a modular damage system where each vehicle section has its own health pool. Collisions above a force threshold trigger mesh deformation using vertex displacement. Visual damage states (dents, sparks, smoke particles) layer progressively as health decreases."
+      },
+      {
+        "id": "physics",
+        "label": "Physics & Handling",
+        "icon": "sliders",
+        "summary": "Custom WheelCollider tuning for arcade-feel vehicle physics.",
+        "details": "Extended Unity's WheelCollider system with custom friction curves to achieve a fun, arcade-style handling model. Added drift mechanics via lateral force blending and implemented a rigidbody centre-of-mass adjustment for consistent flip resistance."
+      },
+      {
+        "id": "optimization",
+        "label": "Performance Optimization",
+        "icon": "zap",
+        "summary": "Maintained 60fps on mid-range hardware through targeted profiling.",
+        "details": "Used Unity Profiler to identify draw call bottlenecks. Implemented static batching for arena geometry, GPU instancing for particle debris, and LOD groups on vehicle meshes. Final build holds 60fps on mid-range mobile GPUs."
+      }
+    ],
+    "links": {
+      "details": "/games/demolition-derby-survival",
+      "gameplay": ""
+    }
+  },
+  {
+    "id": "hell-drive",
+    "title": "Hell Drive",
+    "description": "Level-based driving game focused on tight progression design, collectible systems, and polished gameplay mechanics built in Unity.",
+    "thumbnail": "",
+    "engine": "Unity",
+    "technologies": ["C#", "Unity", "Level Design", "Blender"],
+    "featured": true,
+    "video": {
+      "url": "",
+      "poster": "",
+      "duration": "0:58",
+      "label": "Level Showcase"
+    },
+    "breakdown": [
+      {
+        "id": "level-design",
+        "label": "Level Design",
+        "icon": "map",
+        "summary": "Iterative blockout-to-final pipeline with focus on flow and pacing.",
+        "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles. Final levels were dressed in Blender-exported modular kit pieces."
+      },
+      {
+        "id": "collectibles",
+        "label": "Collectible System",
+        "icon": "star",
+        "summary": "Data-driven collectible spawner with persistent save state.",
+        "details": "Built a ScriptableObject-based collectible system allowing designers to define item types, spawn weights, and point values without touching code. Collected state is persisted via PlayerPrefs with a serialised bitfield for efficient storage."
+      },
+      {
+        "id": "progression",
+        "label": "Progression Design",
+        "icon": "trending-up",
+        "summary": "Unlockable levels and vehicles gated by score thresholds.",
+        "details": "Designed a meta-progression loop where star ratings (1–3 per level) unlock new vehicles and level packs. Score thresholds were tuned against playtest completion data to maintain a challenging but fair difficulty curve."
+      },
+      {
+        "id": "ui",
+        "label": "UI & Feedback",
+        "icon": "layout",
+        "summary": "Responsive Unity UI Toolkit HUD with animated score feedback.",
+        "details": "Built the in-game HUD using Unity UI Toolkit for resolution independence. Implemented animated score popups using DOTween with eased scale and fade. Speedometer needle rotates via a shader-driven UV offset for zero runtime overhead."
+      }
+    ],
+    "links": {
+      "details": "/games/hell-drive",
+      "gameplay": ""
+    }
+  }
+]
