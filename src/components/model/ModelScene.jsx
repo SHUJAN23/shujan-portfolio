@@ -7,6 +7,19 @@ import { OrbitControls, useGLTF, Environment, ContactShadows } from "@react-thre
  * Lazy-loaded by ModelViewer — Three.js only loads when this component mounts
  *
  * @param {string} modelUrl - URL to the .glb file
+ *
+ * ── Lighting guide ────────────────────────────────────────────────────────────
+ * ambientLight      → base fill, keeps shadows from going pure black
+ * directionalLight  → key light (main source, top-front-right)
+ * directionalLight  → rim/fill light (back-left, accent color)
+ * Environment       → HDRI for reflections on metallic/PBR materials
+ *                     intensity prop controls how strongly it affects materials
+ *
+ * Tweak order for brightness:
+ *   1. ambientLight intensity     — raises/lowers overall floor brightness
+ *   2. directionalLight intensity — raises/lowers the key shadow contrast
+ *   3. Environment intensity (environmentIntensity on Canvas) — PBR reflections
+ * ─────────────────────────────────────────────────────────────────────────────
  */
 export default function ModelScene({ modelUrl }) {
   return (
@@ -14,15 +27,34 @@ export default function ModelScene({ modelUrl }) {
       camera={{ position: [0, 1.5, 4], fov: 45 }}
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.5]}
+      // ← Lower this (0–1) to dim HDRI contribution across all materials
+      environmentIntensity={0.35}
       className="w-full h-full"
     >
-      {/* Lighting */}
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow />
-      <directionalLight position={[-5, 3, -5]} intensity={0.3} color="#c8b89a" />
+      {/* ── Ambient — overall fill brightness ── */}
+      {/* Raise intensity → brighter everywhere. Lower → darker shadows */}
+      <ambientLight intensity={0.15} color="#ffffff" />
 
-      {/* Environment map for reflections */}
-      <Environment preset="warehouse" />
+      {/* ── Key light — main directional source ── */}
+      {/* intensity: 0.6–1.0 for natural. Lower for darker workshop mood */}
+      <directionalLight
+        position={[5, 8, 5]}
+        intensity={0.4}
+        color="#ffe8c8"
+      />
+
+      {/* ── Rim / fill light — subtle back accent ── */}
+      {/* Keeps the back faces from going completely black */}
+      <directionalLight
+        position={[-4, 2, -4]}
+        intensity={0.15}
+        color="#8ba0c8"
+      />
+
+      {/* ── Environment — HDRI for reflections on metallic/PBR surfaces ── */}
+      {/* "apartment" is softer than "warehouse". Other options:           */}
+      {/* "sunset" | "dawn" | "night" | "forest" | "studio" | "city"      */}
+      <Environment preset="apartment" />
 
       {/* The model */}
       <GLBModel url={modelUrl} />
@@ -30,13 +62,13 @@ export default function ModelScene({ modelUrl }) {
       {/* Contact shadow beneath model */}
       <ContactShadows
         position={[0, -1, 0]}
-        opacity={0.4}
+        opacity={0.35}
         scale={6}
-        blur={2}
+        blur={2.5}
         color="#000000"
       />
 
-      {/* Orbit controls — damping for smooth feel */}
+      {/* Orbit controls */}
       <OrbitControls
         enablePan={true}
         enableZoom={true}

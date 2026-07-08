@@ -34,7 +34,7 @@ export default function Models() {
 
   return (
     <>
-      <div className="min-h-screen pt-24 pb-20">
+      <div style={{ paddingTop: "96px" }} className="min-h-screen pb-20">
         <Container>
           {/* Page header */}
           <motion.div

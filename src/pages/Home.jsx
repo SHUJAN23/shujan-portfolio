@@ -4,7 +4,7 @@ import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Showcase from "../components/sections/Showcase";
 import GameplayVideos from "../components/sections/GameplayVideos";
 import TechnicalBreakdown from "../components/sections/TechnicalBreakdown";
-import Skills from "../components/sections/Skills";
+// import Skills from "../components/sections/Skills"; // commented out — moved to future dedicated page
 import Resume from "../components/sections/Resume";
 import Contact from "../components/sections/Contact";
 
@@ -17,11 +17,9 @@ export default function Home() {
       <Showcase />
       <GameplayVideos />
       <TechnicalBreakdown />
-      <Skills />
+      {/* <Skills /> */}
       <Resume />
       <Contact />
-      {/* R3F Hero Scene — Step 12 */}
-      {/* Performance Pass — Step 13 */}
     </div>
   );
 }

@@ -82,7 +82,7 @@ export default function FeaturedProjects() {
           </motion.div>
         </div>
 
-        {/* Cards grid — first card is featured (wider), rest are standard */}
+        {/* Cards grid — uniform size, 2-col on lg */}
         {featuredGames.length === 0 ? (
           <EmptyState />
         ) : (
@@ -91,11 +91,11 @@ export default function FeaturedProjects() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-6"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           >
-            {featuredGames.map((game, index) => (
+            {featuredGames.map((game) => (
               <motion.div key={game.id} variants={itemVariants}>
-                <GameCard game={game} featured={index === 0} />
+                <GameCard game={game} featured={false} />
               </motion.div>
             ))}
           </motion.div>

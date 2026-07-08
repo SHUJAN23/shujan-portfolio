@@ -1,35 +1,81 @@
 [
   {
-    "id": "vehicle-001",
-    "title": "Muscle Car",
+    "id": "pickup-truck",
+    "title": "PickUp Truck",
     "category": "Vehicle",
-    "software": ["Blender"],
-    "tags": ["Low Poly", "Game Ready", "PBR"],
-    "polycount": "12.4k tris",
-    "preview": "",
-    "model": "",
-    "featured": true
-  },
-  {
-    "id": "vehicle-002",
-    "title": "Derby Car",
-    "category": "Vehicle",
-    "software": ["Blender"],
-    "tags": ["Low Poly", "Game Ready", "Rigged"],
-    "polycount": "9.8k tris",
-    "preview": "",
-    "model": "",
-    "featured": true
-  },
-  {
-    "id": "environment-001",
-    "title": "Workshop Interior",
-    "category": "Environment",
     "software": ["Blender"],
     "tags": ["Modular", "Game Ready", "PBR"],
-    "polycount": "28k tris",
-    "preview": "",
-    "model": "",
+    "polycount": "56.1k tris",
+    "preview": "assets/images/models/PickUp.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783066248/TruckModel_qsrgih.glb",
+    "featured": true
+  },
+  {
+    "id": "Car1",
+    "title": "Ambassador",
+    "category": "Vehicle",
+    "software": ["Blender"],
+    "tags": ["Modular", "Game Ready", "Solidified"],
+    "polycount": "32k tris",
+    "preview": "assets/images/models/Ambassador.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783078982/Ambassidor_hmph5i.glb",
+    "featured": true
+  },
+  {
+    "id": "Van",
+    "title": "Omini",
+    "category": "Vehicle",
+    "software": ["Blender"],
+    "tags": ["Modular", "Game Ready", "Solidified"],
+    "polycount": "37k tris",
+    "preview": "assets/images/models/Van.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783176585/OMini_eeotk7.glb",
+    "featured": true
+  },
+  {
+    "id": "Truck",
+    "title": "Desi Truck",
+    "category": "Vehical",
+    "software": ["Blender"],
+    "tags": ["Modular", "Game Ready", "PBR"],
+    "polycount": "37k tris",
+    "preview": "assets/images/models/Truck.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783175387/Lorry_l3dkgd.glb",
+    "featured": false
+  },
+  {
+    "id": "Windmill",
+    "title": "Windmill",
+    "category": "Objects",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "5k tris",
+    "preview": "assets/images/models/Windmill.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783435899/Windmills_dph4hd.glb",
+    "featured": false
+  },
+  {
+    "id": "FuelCan",
+    "title": "Jerrycan",
+    "category": "Objects",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "2k tris",
+    "preview": "assets/images/models/JerryCan.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783077429/FuelCan_ygohvn.glb",
     "featured": false
   }
+  ,
+   {
+    "id": "Spanner",
+    "title": "Spanner",
+    "category": "Objects",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "8k tris",
+    "preview": "assets/images/models/Spanner.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783079531/Spanner_tgvqah.glb",
+    "featured": false
+  }
+  
 ]

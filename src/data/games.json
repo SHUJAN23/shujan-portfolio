@@ -1,16 +1,17 @@
 [
   {
     "id": "demolition-derby-survival",
-    "title": "Demolition Derby Survival",
+    "title": "Scrap Wars| Demolition Derby Survival",
     "description": "Vehicle combat survival game developed in Unity featuring AI opponents, a dynamic vehicle damage system, and deep gameplay systems.",
-    "thumbnail": "",
+    "thumbnail": "/assets/images/models/ScrapWars.png",
     "engine": "Unity",
     "technologies": ["C#", "Unity", "Blender", "AI Systems"],
     "featured": true,
     "video": {
-      "url": "",
+      "url": "https://youtu.be/_beJFIc_Z0A",
+      "youtubeId": "_beJFIc_Z0A",
       "poster": "",
-      "duration": "1:24",
+      "duration": "1:39",
       "label": "Gameplay Demo"
     },
     "breakdown": [
@@ -45,21 +46,79 @@
     ],
     "links": {
       "details": "/games/demolition-derby-survival",
-      "gameplay": ""
+      "gameplay": "https://youtu.be/_beJFIc_Z0A"
     }
   },
   {
+  "id": "airborne-bling",
+  "title": "Airborne Bling | 3D Flight Adventure",
+  "description": "Browser-based 3D flight game built with React Three Fiber featuring aircraft controls, collectible targets, collision detection, dynamic environments, and immersive gameplay systems.",
+  "thumbnail": "/assets/images/models/Abb1.png",
+  "engine": "Three.js",
+  "technologies": ["React", "Three.js", "React Three Fiber", "JavaScript", "GLTF"],
+  "featured": true,
+  "video": {
+    "url": "https://youtu.be/SEfnOgO0OQE",
+    "youtubeId": "SEfnOgO0OQE",
+    "poster": "",
+    "duration": "",
+    "label": "Gameplay Demo"
+  },
+  "breakdown": [
+    {
+      "id": "flight",
+      "label": "Flight System",
+      "icon": "plane",
+      "summary": "Custom aircraft movement and camera-follow mechanics.",
+      "details": "Developed a custom flight controller using local axis transformations for pitch, roll, yaw, and forward movement. Implemented smooth quaternion interpolation for realistic aircraft rotation and a dynamic third-person chase camera that follows the aircraft with cinematic movement."
+    },
+    {
+      "id": "gameplay",
+      "label": "Gameplay Systems",
+      "icon": "target",
+      "summary": "Collectible targets, scoring, and progression mechanics.",
+      "details": "Designed collectible coin targets distributed throughout the environment. Implemented collision detection between the aircraft and collectibles, score tracking, target respawning, and reward-based progression systems to encourage exploration and skillful flying."
+    },
+    {
+      "id": "collision",
+      "label": "Collision & Boundaries",
+      "icon": "shield",
+      "summary": "Terrain collision detection and restricted-area management.",
+      "details": "Built a raycast-based terrain collision system that continuously checks aircraft altitude relative to the environment. Added boundary detection, warning states, crash handling, and game-over conditions to create structured gameplay constraints."
+    },
+    {
+      "id": "environment",
+      "label": "Environment & Rendering",
+      "icon": "globe",
+      "summary": "Immersive 3D world with optimized rendering.",
+      "details": "Integrated GLTF environment assets, HDR lighting, reflective water surfaces, skybox rendering, post-processing effects, and optimized scene management. Used React Three Fiber and Three.js to maintain smooth performance while rendering a large explorable landscape."
+    },
+    {
+      "id": "ui",
+      "label": "Game UI & Menus",
+      "icon": "layout",
+      "summary": "Interactive menus and HUD systems.",
+      "details": "Developed a complete game interface including start menu, pause menu, warning notifications, game-over screens, score display, and upgrade interactions. Implemented event-driven communication between gameplay systems and UI components for responsive user feedback."
+    }
+  ],
+  "links": {
+    "details": "/games/airborne-bling",
+    "gameplay": "https://youtu.be/SEfnOgO0OQE"
+  }
+},
+  {
     "id": "hell-drive",
     "title": "Hell Drive",
-    "description": "Level-based driving game focused on tight progression design, collectible systems, and polished gameplay mechanics built in Unity.",
-    "thumbnail": "",
+    "description": "Level-based driving game built in Unity. Drive through obstacle-filled environments, collect coins, and minimize vehicle damage to complete each level.",
+    "thumbnail": "/assets/images/models/HellDrive.png",
     "engine": "Unity",
     "technologies": ["C#", "Unity", "Level Design", "Blender"],
     "featured": true,
     "video": {
-      "url": "",
+      "url": "https://youtu.be/sjXG0Yz4eGY",
+      "youtubeId": "sjXG0Yz4eGY",
       "poster": "",
-      "duration": "0:58",
+      "duration": "0:54",
       "label": "Level Showcase"
     },
     "breakdown": [
@@ -68,7 +127,7 @@
         "label": "Level Design",
         "icon": "map",
         "summary": "Iterative blockout-to-final pipeline with focus on flow and pacing.",
-        "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles. Final levels were dressed in Blender-exported modular kit pieces."
+        "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles."
       },
       {
         "id": "collectibles",
@@ -94,7 +153,7 @@
     ],
     "links": {
       "details": "/games/hell-drive",
-      "gameplay": ""
+      "gameplay": "https://youtu.be/sjXG0Yz4eGY"
     }
   }
 ]

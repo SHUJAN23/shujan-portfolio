@@ -24,11 +24,11 @@ function GameCard({ game, featured = false }) {
         ${featured ? "lg:flex-row" : ""}
       `}
     >
-      {/* Thumbnail */}
+      {/* Thumbnail — aspect-video = 16:9, never crops */}
       <div
         className={`
           relative bg-[#412D15]/30 overflow-hidden flex-shrink-0
-          ${featured ? "lg:w-1/2 h-56 lg:h-auto" : "h-48"}
+          ${featured ? "lg:w-1/2 aspect-video lg:aspect-auto lg:h-full" : "aspect-video"}
         `}
       >
         {thumbnail ? (

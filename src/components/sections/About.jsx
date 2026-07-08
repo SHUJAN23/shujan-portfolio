@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import SectionTitle from "../common/SectionTitle";
 import Container from "../layout/Container";
+// Profile photo served from public/assets — no JS import needed
+const profilePhoto = "/assets/images/shujan-profile.jpg";
 
 // Skills/technologies organized by category
 const expertise = [
@@ -12,14 +14,14 @@ const expertise = [
     category: "3D Art",
     items: ["Blender", "3D Modeling", "Texturing", "UV Mapping"],
   },
-  {
-    category: "Technical Art",
-    items: ["Optimization", "Shaders", "VFX", "Lighting"],
-  },
-  {
-    category: "Web Development",
-    items: ["React", "Three.js", "React Three Fiber", "Tailwind CSS"],
-  },
+  // {
+  //   category: "Technical Art",
+  //   items: ["Optimization", "Shaders", "VFX", "Lighting"],
+  // },
+  // {
+  //   category: "Web Development",
+  //   items: ["React", "Three.js", "React Three Fiber", "Tailwind CSS"],
+  // },
 ];
 
 // Fade-up animation for stagger effect
@@ -55,6 +57,72 @@ export default function About() {
             }}
             className="flex flex-col gap-6"
           >
+            {/* Profile Photo */}
+            <motion.div variants={fadeUp} className="flex justify-center lg:justify-start">
+              <div className="relative">
+
+                {/* Rotating dashed ring — outermost */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-3 rounded-full border border-dashed border-[rgba(225,220,201,0.15)] animate-spin-slow"
+                />
+
+                {/* Static gradient ring */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-[6px] rounded-full"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, rgba(225,220,201,0.5), rgba(65,45,21,0.8), rgba(225,220,201,0.1), rgba(65,45,21,0.6), rgba(225,220,201,0.5))",
+                    padding: "1.5px",
+                    WebkitMask:
+                      "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                  }}
+                />
+
+                {/* Warm glow bloom */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-4 rounded-full opacity-50 blur-xl pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(65,45,21,0.9) 0%, rgba(31,21,12,0.5) 60%, transparent 100%)",
+                  }}
+                />
+
+                {/* Photo */}
+                <div className="relative w-52 h-52 rounded-full overflow-hidden ring-2 ring-[rgba(225,220,201,0.2)] ring-offset-2 ring-offset-[#000000]">
+                  <img
+                    src={profilePhoto}
+                    alt="Shujan — Unity Game Developer & Technical Artist"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top scale-105"
+                  />
+                  {/* Subtle vignette over photo */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 50%, transparent 60%, rgba(0,0,0,0.35) 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Status dot — available for work */}
+                <span className="absolute bottom-2 right-2 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#000000]/80 border border-[rgba(225,220,201,0.15)] backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] font-medium text-[#E1DCC9]/60 font-[Inter] tracking-wide">
+                    Available
+                  </span>
+                </span>
+
+              </div>
+            </motion.div>
+
             <motion.div variants={fadeUp}>
               <SectionTitle
                 label="Introduction"
@@ -82,11 +150,7 @@ export default function About() {
                 me to build complete pipelines from concept to playable game.
               </p>
 
-              <p>
-                Today, I focus on creating immersive game worlds while exploring modern 
-                tools like <strong className="text-[#E1DCC9]/80">React Three Fiber</strong> to 
-                push 3D experiences to the web.
-              </p>
+             
             </motion.div>
 
             {/* CTA */}

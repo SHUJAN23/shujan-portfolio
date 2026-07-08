@@ -37,7 +37,7 @@ export default function Hero() {
     <section
       id="hero"
       aria-label="Hero section"
-      className="relative min-h-screen w-full flex items-center overflow-hidden"
+      className="relative min-h-[calc(100vh-4rem)] w-full flex items-center overflow-hidden"
     >
       {/* Subtle background grid */}
       <div
@@ -72,7 +72,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-4rem)] py-16">
           {/* ── Left: Text Content ── */}
           <motion.div
             variants={containerVariants}
@@ -157,8 +157,8 @@ export default function Hero() {
               className="flex gap-8 pt-4 border-t border-[rgba(225,220,201,0.1)]"
             >
               {[
-                { value: "3+", label: "Years Experience" },
-                { value: "10+", label: "Projects Built" },
+                // { value: "3+", label: "Years Experience" },  // uncomment when ready
+                // { value: "10+", label: "Projects Built" },   // uncomment when ready
                 { value: "Unity", label: "Primary Engine" },
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col gap-1">
