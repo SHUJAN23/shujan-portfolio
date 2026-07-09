@@ -57,11 +57,12 @@ const ProjectSection = memo(function ProjectSection({ game, index }) {
 
   return (
     <motion.div
+      id={game.id}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-      className="flex flex-col gap-8"
+      className="flex flex-col gap-8 scroll-mt-24"
     >
       {/* ── Project number label ── */}
       <motion.div variants={fadeUp} className="flex items-center gap-4">

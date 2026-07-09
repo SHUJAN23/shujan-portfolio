@@ -4,8 +4,8 @@ import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Showcase from "../components/sections/Showcase";
 import GameplayVideos from "../components/sections/GameplayVideos";
 import TechnicalBreakdown from "../components/sections/TechnicalBreakdown";
-// import Skills from "../components/sections/Skills"; // commented out — moved to future dedicated page
-import Resume from "../components/sections/Resume";
+// import Skills from "../components/sections/Skills";
+import Education from "../components/sections/Education";
 import Contact from "../components/sections/Contact";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
       <GameplayVideos />
       <TechnicalBreakdown />
       {/* <Skills /> */}
-      <Resume />
+      <Education />
       <Contact />
     </div>
   );

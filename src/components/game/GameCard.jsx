@@ -1,16 +1,19 @@
 import { memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /**
  * GameCard — Displays a single game project
  *
- * @param {object} game - Game data object from games.json
- * @param {boolean} featured - Enables larger "hero" card layout
+ * "View Project" button is hidden on the /games page since the card
+ * is already inside the full project detail view there.
  */
 function GameCard({ game, featured = false }) {
   const { title, description, thumbnail, engine, technologies, links } = game;
+  const { pathname } = useLocation();
 
   const hasGameplay = Boolean(links?.gameplay);
+  // Hide "View Project" when already on the games page — it would link to itself
+  const showViewProject = links?.details && pathname !== "/games";
 
   return (
     <article
@@ -82,12 +85,12 @@ function GameCard({ game, featured = false }) {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            {links?.details && (
+            {showViewProject && (
               <Link
                 to={links.details}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#000000] bg-[#E1DCC9] rounded-lg hover:bg-[#E1DCC9]/80 transition-colors font-[Inter]"
               >
-                View Details
+                View Project
                 <ArrowRightIcon />
               </Link>
             )}

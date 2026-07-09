@@ -45,7 +45,7 @@
       }
     ],
     "links": {
-      "details": "/games/demolition-derby-survival",
+      "details": "/games#demolition-derby-survival",
       "gameplay": "https://youtu.be/_beJFIc_Z0A"
     }
   },
@@ -102,7 +102,7 @@
     }
   ],
   "links": {
-    "details": "/games/airborne-bling",
+    "details": "/games#airborne-bling",
     "gameplay": "https://youtu.be/SEfnOgO0OQE"
   }
 },
@@ -152,7 +152,7 @@
       }
     ],
     "links": {
-      "details": "/games/hell-drive",
+      "details": "/games#hell-drive",
       "gameplay": "https://youtu.be/sjXG0Yz4eGY"
     }
   }
