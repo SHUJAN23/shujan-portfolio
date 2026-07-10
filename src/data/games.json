@@ -155,5 +155,55 @@
       "details": "/games#hell-drive",
       "gameplay": "https://youtu.be/sjXG0Yz4eGY"
     }
+  },
+  {
+  "id": "clash-of-champions",
+  "title": "Clash of Champions",
+  "description": "A 2D fighting game developed using Python and Pygame, featuring fast-paced one-on-one combat, unique character attacks, and round-based gameplay inspired by classic arcade fighters. Players must defeat their opponent by winning 3 rounds before they do.",
+  "thumbnail": "/assets/images/models/COC.png",
+  "engine": "Python / Pygame",
+  "technologies": ["Python", "Pygame", "Game Design", "2D Animation"],
+  "featured": true,
+  "video": {
+    "url": "https://youtu.be/in86df5bVrU",
+    "youtubeId": "in86df5bVrU",
+    "poster": "",
+    "duration": "1:00",
+    "label": "Gameplay Demo"
+  },
+  "breakdown": [
+    {
+      "id": "combat",
+      "label": "Combat System",
+      "icon": "swords",
+      "summary": "Responsive fighting mechanics with attacks, and health management.",
+      "details": "Implemented a player combat system featuring movement, jumping, attacking, hit detection, health tracking, and victory conditions. Attack timing and collision checks were tuned to create satisfying and responsive gameplay."
+    },
+    {
+      "id": "animation",
+      "label": "Character Animation",
+      "icon": "film",
+      "summary": "Sprite-based animation system for player actions.",
+      "details": "Created an animation controller using sprite sheets for idle, running, jumping, attacking, taking damage, and death states. Animations are synchronized with gameplay actions for smooth visual feedback."
+    },
+    {
+      "id": "gameplay",
+      "label": "Round System",
+      "icon": "trophy",
+      "summary": "Best-of-three round progression inspired by arcade fighters.",
+      "details": "Designed a round-based match system where players compete to win three rounds. The game automatically tracks victories, resets player states between rounds, and determines the final winner."
+    },
+    {
+      "id": "ui",
+      "label": "UI & Feedback",
+      "icon": "layout",
+      "summary": "Health bars, round counters, and victory screens.",
+      "details": "Developed a lightweight UI system displaying player health, round wins, and match results. Visual feedback helps players quickly understand combat outcomes and game progression."
+    }
+  ],
+  "links": {
+    "details": "/games#clash-of-champions",
+    "gameplay": "https://youtu.be/in86df5bVrU"
   }
+}
 ]
