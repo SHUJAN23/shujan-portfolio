@@ -22,7 +22,7 @@ const fadeUp = {
 
 export default function Games() {
   return (
-    <div style={{ paddingTop: "96px" }} className="min-h-screen pb-20">
+    <div className="min-h-screen pt-8 pb-20">
       <Container>
         {/* Page header */}
         <motion.div
