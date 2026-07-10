@@ -1,21 +1,27 @@
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, MeshDistortMaterial, Environment, Float, Sparkles } from "@react-three/drei";
+import { useRef, useMemo, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { MeshDistortMaterial, Environment, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
-/**
- * HeroScene — R3F canvas for the Hero section right panel.
- *
- * Design intent: A geometric icosahedron with a warm metallic distort material —
- * references the "workshop / forged metal" aesthetic of the portfolio.
- * Mouse parallax on the camera adds depth without jarring motion.
- *
- * Performance budget:
- * - dpr capped at [1, 1.5]
- * - frameloop "always" — scene is always visible in hero
- * - No post-processing (saves ~200KB)
- * - Sparkles are instanced geometry (cheap)
- */
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+// Rotation limits in radians
+const MAX_ROT_Y = THREE.MathUtils.degToRad(15); // ±15° horizontal
+const MAX_ROT_X = THREE.MathUtils.degToRad(8);  // ±8°  vertical
+
+// Lerp speed — higher = snappier, lower = more sluggish
+const LERP_SPEED = 0.04; // used as base for frame-rate-independent lerp
+
+// Detect touch/mobile devices — disable mouse tracking on coarse pointers
+const isTouchDevice =
+  typeof window !== "undefined" &&
+  window.matchMedia("(pointer: coarse)").matches;
+
+// Shared mouse state — lives outside React so it never triggers re-renders
+const mouse = { x: 0, y: 0 };
+
+// ── Main scene ────────────────────────────────────────────────────────────────
+
 export default function HeroScene() {
   return (
     <Canvas
@@ -26,29 +32,24 @@ export default function HeroScene() {
       aria-hidden="true"
       className="w-full h-full"
     >
-      {/* Lighting setup — warm workshop feel */}
+      {/* Lighting — warm workshop feel */}
       <ambientLight intensity={0.3} />
-      <directionalLight position={[4, 6, 4]} intensity={1.5} color="#e8d5b0" />
+      <directionalLight position={[4, 6, 4]}   intensity={1.5} color="#e8d5b0" />
       <directionalLight position={[-4, -2, -4]} intensity={0.4} color="#412D15" />
-      <pointLight position={[0, 4, 2]} intensity={0.8} color="#c8a96e" />
+      <pointLight       position={[0, 4, 2]}    intensity={0.8} color="#c8a96e" />
 
-      {/* Environment for metallic reflections */}
+      {/* HDRI reflections */}
       <Environment preset="warehouse" />
 
-      {/* Main floating object */}
-      <Float
-        speed={1.4}
-        rotationIntensity={0.6}
-        floatIntensity={0.8}
-        floatingRange={[-0.12, 0.12]}
-      >
-        <CoreGeo />
-      </Float>
+      {/*
+        ModelGroup — single group that rotates based on mouse.
+        Both the core mesh and the wireframe shell live here so they
+        move together as one unit. The wireframe shell has an additional
+        slow self-rotation so it feels layered.
+      */}
+      <ModelGroup />
 
-      {/* Outer wireframe shell */}
-      <WireShell />
-
-      {/* Orbiting particles */}
+      {/* Orbiting particles — not parented to ModelGroup so they drift freely */}
       <Sparkles
         count={60}
         scale={4.5}
@@ -57,32 +58,74 @@ export default function HeroScene() {
         opacity={0.35}
         color="#c8a96e"
       />
-
-      {/* Mouse parallax camera rig */}
-      <CameraRig />
-
-      {/* Orbit controls — damped, no zoom, subtle */}
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        enableRotate={true}
-        autoRotate={false}
-        dampingFactor={0.05}
-        enableDamping
-        maxPolarAngle={Math.PI * 0.75}
-        minPolarAngle={Math.PI * 0.25}
-      />
     </Canvas>
   );
 }
 
-// ── Core geometry — Icosahedron with distort material ─────────────────────────
+// ── ModelGroup — handles mouse-driven rotation ────────────────────────────────
 
-function CoreGeo() {
-  const meshRef = useRef();
+function ModelGroup() {
+  const groupRef = useRef();
+
+  // Smoothed rotation target (radians)
+  const smoothed = useRef({ x: 0, y: 0 });
+
+  // Register global mousemove listener once — updates the shared mouse object
+  useEffect(() => {
+    if (isTouchDevice) return; // skip on mobile
+
+    function onMouseMove(e) {
+      // Normalise to [-1, +1] relative to the full viewport
+      mouse.x =  (e.clientX / window.innerWidth  - 0.5) * 2;
+      mouse.y = -(e.clientY / window.innerHeight - 0.5) * 2;
+    }
+
+    function onMouseLeave() {
+      // Smoothly return to default — just zero the target
+      mouse.x = 0;
+      mouse.y = 0;
+    }
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseleave", onMouseLeave);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, []);
+
+  useFrame((_, delta) => {
+    if (!groupRef.current) return;
+
+    // Frame-rate-independent exponential lerp
+    const t = 1 - Math.pow(LERP_SPEED, delta);
+
+    // Target rotations clamped to limits
+    const targetY = THREE.MathUtils.clamp(mouse.x * MAX_ROT_Y, -MAX_ROT_Y, MAX_ROT_Y);
+    const targetX = THREE.MathUtils.clamp(mouse.y * MAX_ROT_X, -MAX_ROT_X, MAX_ROT_X);
+
+    // Smooth interpolation
+    smoothed.current.x += (targetX - smoothed.current.x) * t;
+    smoothed.current.y += (targetY - smoothed.current.y) * t;
+
+    // Apply to the group — the entire model (core + wireframe) rotates together
+    groupRef.current.rotation.x = smoothed.current.x;
+    groupRef.current.rotation.y = smoothed.current.y;
+  });
 
   return (
-    <mesh ref={meshRef} castShadow>
+    <group ref={groupRef}>
+      <CoreGeo />
+      <WireShell />
+    </group>
+  );
+}
+
+// ── CoreGeo — the main metallic icosahedron ───────────────────────────────────
+
+function CoreGeo() {
+  return (
+    <mesh castShadow>
       <icosahedronGeometry args={[1.1, 1]} />
       <MeshDistortMaterial
         color="#412D15"
@@ -98,18 +141,18 @@ function CoreGeo() {
   );
 }
 
-// ── Wireframe shell — slightly larger, rotates independently ─────────────────
+// ── WireShell — edge cage with slow independent spin ─────────────────────────
 
 function WireShell() {
   const meshRef = useRef();
 
+  // Slow self-rotation on top of the parent group's mouse rotation
   useFrame((_, delta) => {
     if (!meshRef.current) return;
-    meshRef.current.rotation.y += delta * 0.12;
-    meshRef.current.rotation.x += delta * 0.06;
+    meshRef.current.rotation.y += delta * 0.1;
+    meshRef.current.rotation.z += delta * 0.04;
   });
 
-  // Build a proper wireframe geometry from an icosahedron
   const wireGeo = useMemo(() => {
     const base = new THREE.IcosahedronGeometry(1.45, 1);
     return new THREE.EdgesGeometry(base);
@@ -125,49 +168,4 @@ function WireShell() {
       />
     </lineSegments>
   );
-}
-
-// ── Camera rig — follows mouse with subtle parallax ──────────────────────────
-
-function CameraRig() {
-  const { camera, gl } = useThree();
-  const mouse = useRef({ x: 0, y: 0 });
-  const target = useRef({ x: 0, y: 0 });
-
-  // Track mouse relative to the canvas
-  useMemo(() => {
-    const canvas = gl.domElement;
-
-    function onMouseMove(e) {
-      const rect = canvas.getBoundingClientRect();
-      mouse.current.x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      mouse.current.y = -((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    }
-
-    function onMouseLeave() {
-      mouse.current.x = 0;
-      mouse.current.y = 0;
-    }
-
-    canvas.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mouseleave", onMouseLeave);
-    return () => {
-      canvas.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
-    };
-  }, [gl]);
-
-  useFrame((_, delta) => {
-    // Smooth lerp toward mouse position
-    const lerpFactor = 1 - Math.pow(0.04, delta);
-    target.current.x += (mouse.current.x - target.current.x) * lerpFactor;
-    target.current.y += (mouse.current.y - target.current.y) * lerpFactor;
-
-    // Apply subtle parallax offset — max ±0.4 units
-    camera.position.x = target.current.x * 0.4;
-    camera.position.y = target.current.y * 0.25;
-    camera.lookAt(0, 0, 0);
-  });
-
-  return null;
 }
