@@ -65,7 +65,7 @@ export default function TechnicalBreakdown() {
           className="flex flex-col lg:flex-row gap-8 lg:gap-12"
         >
           {/* ── Left: Project tabs ── */}
-          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-1 lg:pb-0 lg:w-56 flex-shrink-0">
+          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-1 lg:pb-0 lg:w-56 flex-shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {gamesWithBreakdown.map((game) => (
               <GameTab
                 key={game.id}

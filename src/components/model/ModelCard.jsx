@@ -20,8 +20,8 @@ function ModelCard({ model, onViewModel }) {
         hover:-translate-y-1
       "
     >
-      {/* Preview area */}
-      <div className="relative h-52 bg-[#412D15]/20 overflow-hidden">
+      {/* Preview area — aspect-video for consistent 16:9 at any card width */}
+      <div className="relative aspect-video bg-[#412D15]/20 overflow-hidden">
         {preview ? (
           <img
             src={preview}
@@ -51,7 +51,7 @@ function ModelCard({ model, onViewModel }) {
       <div className="flex flex-col flex-1 p-5 gap-4">
         {/* Title + software */}
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-tight">
+          <h3 className="text-lg font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-tight min-w-0 line-clamp-2">
             {title}
           </h3>
           <div className="flex gap-1.5 flex-shrink-0">

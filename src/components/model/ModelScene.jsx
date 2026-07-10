@@ -28,12 +28,12 @@ export default function ModelScene({ modelUrl }) {
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.5]}
       // ← Lower this (0–1) to dim HDRI contribution across all materials
-      environmentIntensity={0.35}
+      environmentIntensity={0.25}
       className="w-full h-full"
     >
       {/* ── Ambient — overall fill brightness ── */}
       {/* Raise intensity → brighter everywhere. Lower → darker shadows */}
-      <ambientLight intensity={0.15} color="#ffffff" />
+      <ambientLight intensity={0.05} color="#ffffff" />
 
       {/* ── Key light — main directional source ── */}
       {/* intensity: 0.6–1.0 for natural. Lower for darker workshop mood */}
@@ -47,7 +47,7 @@ export default function ModelScene({ modelUrl }) {
       {/* Keeps the back faces from going completely black */}
       <directionalLight
         position={[-4, 2, -4]}
-        intensity={0.15}
+        intensity={0.05}
         color="#8ba0c8"
       />
 

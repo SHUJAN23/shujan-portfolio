@@ -72,7 +72,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-4rem)] py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-4rem)] pt-4 pb-16">
           {/* ── Left: Text Content ── */}
           <motion.div
             variants={containerVariants}
@@ -94,7 +94,7 @@ export default function Hero() {
 
             {/* Heading */}
             <motion.div variants={fadeUp} className="flex flex-col gap-2">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-[1.05] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-[1.05] tracking-tight">
                 Hi, I'm{" "}
                 <span className="text-[#E1DCC9]">Shujan</span>
               </h1>
@@ -178,7 +178,7 @@ export default function Hero() {
             variants={fadeIn}
             initial="hidden"
             animate="visible"
-            className="relative h-[400px] lg:h-full lg:min-h-[560px] flex items-center justify-center"
+            className="relative h-[260px] sm:h-[340px] lg:h-full lg:min-h-[560px] flex items-center justify-center"
           >
             {/* Scene container — corner accents frame the canvas */}
             <div className="relative w-full h-full min-h-[400px] rounded-2xl border border-[rgba(225,220,201,0.1)] bg-[#1F150C]/20 overflow-hidden">

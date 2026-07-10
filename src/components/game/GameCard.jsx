@@ -84,7 +84,7 @@ function GameCard({ game, featured = false }) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {showViewProject && (
               <Link
                 to={links.details}

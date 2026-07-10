@@ -10,17 +10,17 @@ import Container from "../layout/Container";
 const socials = [
   {
     name: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/SHUJAN23",
     icon: <GitHubIcon />,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/",
+    href: "https://www.linkedin.com/in/shujandv/",
     icon: <LinkedInIcon />,
   },
   {
     name: "Email",
-    href: "mailto:your@email.com",
+    href: "mailto:shujand13@email.com",
     icon: <MailIcon />,
   },
 ];
@@ -110,7 +110,7 @@ export default function Contact() {
             <div className="flex flex-col gap-3">
               {[
                 { label: "Response time",  value: "Within 24 hours" },
-                { label: "Available for",  value: "Freelance · Full-time · Collabs" },
+               // { label: "Available for",  value: "Freelance · Full-time · Collabs" },
                 { label: "Based in",       value: "India" },
               ].map((item) => (
                 <div

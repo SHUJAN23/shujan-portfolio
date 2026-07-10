@@ -4,8 +4,6 @@ import SectionTitle from "../common/SectionTitle";
 import Container from "../layout/Container";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
-// To add a certificate image: place the file in public/assets/images/certificates/
-// then set "image" to "/assets/images/certificates/your-file.png"
 
 const education = [
   {
@@ -22,24 +20,28 @@ const education = [
   },
 ];
 
+// type: "pdf" → renders <iframe>  |  type: "image" → renders <img>
 const certifications = [
   {
     id: "cert-1",
     title: "Unity 3D Game Development Internship Certificate",
     issuer: "Abhima Technologies",
-    image: "/assets/images/certificates/abhima-unity-internship.png",
+    file: "/assets/images/certificates/Internship Certificate - Shujan.pdf",
+    type: "pdf",
   },
   {
     id: "cert-2",
     title: "C# Unity 3D Mobile Car Racing Game Development",
     issuer: "Udemy",
-    image: "/assets/images/certificates/udemy-car-racing.png",
+    file: "/assets/images/certificates/Unity 3d Car Racing Game.pdf",
+    type: "pdf",
   },
   {
     id: "cert-3",
     title: "Game Development for Beginners: 3D Car Game in Unity",
     issuer: "Udemy",
-    image: "/assets/images/certificates/udemy-3d-car-game.png",
+    file: "/assets/images/certificates/Unity 3d Car game.pdf",
+    type: "pdf",
   },
 ];
 
@@ -66,11 +68,9 @@ export default function Education() {
         aria-labelledby="education-heading"
         className="py-20 lg:py-32 bg-[#000000]"
       >
-        {/* Divider */}
         <div aria-hidden="true" className="w-full border-t border-[rgba(225,220,201,0.06)] mb-20 lg:mb-32" />
 
         <Container>
-          {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,10 +85,9 @@ export default function Education() {
             />
           </motion.div>
 
-          {/* Two-column grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
-            {/* ── Education ── */}
+            {/* ── Education timeline ── */}
             <div>
               <ColumnHeading icon={<GraduationIcon />} label="Education" />
               <div className="relative mt-6">
@@ -124,7 +123,7 @@ export default function Education() {
               </div>
             </div>
 
-            {/* ── Certifications ── */}
+            {/* ── Certifications list ── */}
             <div>
               <ColumnHeading icon={<CertIcon />} label="Certifications" />
               <div className="mt-6 flex flex-col gap-3">
@@ -165,19 +164,12 @@ function CertCard({ cert, index, onOpen }) {
       viewport={{ once: true, margin: "-40px" }}
       onClick={() => onOpen(cert)}
       aria-label={`View certificate: ${cert.title}`}
-      className="
-        group w-full text-left flex items-start gap-4 p-4 rounded-xl
-        bg-[#1F150C] border border-[rgba(225,220,201,0.1)]
-        hover:border-[rgba(225,220,201,0.3)] hover:bg-[#1F150C]
-        transition-all duration-200 cursor-pointer
-      "
+      className="group w-full text-left flex items-start gap-4 p-4 rounded-xl bg-[#1F150C] border border-[rgba(225,220,201,0.1)] hover:border-[rgba(225,220,201,0.3)] transition-all duration-200 cursor-pointer"
     >
-      {/* Icon */}
       <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#412D15]/50 border border-[rgba(225,220,201,0.1)] flex items-center justify-center text-[#E1DCC9]/40 mt-0.5 group-hover:text-[#E1DCC9]/70 group-hover:border-[rgba(225,220,201,0.25)] transition-colors">
         <AwardIcon />
       </span>
 
-      {/* Text */}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-[#E1DCC9]/80 font-[Inter] leading-snug group-hover:text-[#E1DCC9] transition-colors">
           {cert.title}
@@ -187,8 +179,8 @@ function CertCard({ cert, index, onOpen }) {
         </p>
       </div>
 
-      {/* "View" hint — appears on hover */}
-      <span className="flex-shrink-0 flex items-center gap-1 text-[10px] font-medium text-[#E1DCC9]/0 group-hover:text-[#E1DCC9]/40 transition-colors font-[Inter] tracking-wide self-center">
+      {/* View hint on hover */}
+      <span className="flex-shrink-0 flex items-center gap-1 text-[10px] font-medium text-[#E1DCC9]/0 group-hover:text-[#E1DCC9]/40 transition-colors font-[Inter] self-center">
         View
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -203,6 +195,11 @@ function CertCard({ cert, index, onOpen }) {
 // ── CertViewer modal ──────────────────────────────────────────────────────────
 
 function CertViewer({ cert, onClose }) {
+  // Encode each path segment so spaces in filenames work as valid URLs
+  const safeUrl = cert.file
+    ? cert.file.split("/").map((seg) => encodeURIComponent(seg)).join("/")
+    : null;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -214,7 +211,7 @@ function CertViewer({ cert, onClose }) {
       aria-label={`Certificate: ${cert.title}`}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
     >
-      {/* Backdrop — click to close */}
+      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/85 backdrop-blur-md"
         onClick={onClose}
@@ -227,10 +224,11 @@ function CertViewer({ cert, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 16 }}
         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-3xl bg-[#1F150C] border border-[rgba(225,220,201,0.15)] rounded-2xl overflow-hidden"
+        className="relative w-full max-w-4xl bg-[#1F150C] border border-[rgba(225,220,201,0.15)] rounded-2xl overflow-hidden flex flex-col"
+        style={{ maxHeight: "90vh", minHeight: "320px" }}
       >
-        {/* Header bar */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[rgba(225,220,201,0.08)]">
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[rgba(225,220,201,0.08)] flex-shrink-0">
           <div className="flex flex-col gap-0.5">
             <p className="text-sm font-semibold text-[#E1DCC9] font-[Space_Grotesk] leading-snug">
               {cert.title}
@@ -239,34 +237,42 @@ function CertViewer({ cert, onClose }) {
               {cert.issuer}
             </p>
           </div>
-
-          {/* Close button */}
           <button
             onClick={onClose}
             aria-label="Close certificate viewer"
-            className="w-9 h-9 flex items-center justify-center rounded-lg border border-[rgba(225,220,201,0.12)] text-[#E1DCC9]/40 hover:text-[#E1DCC9] hover:border-[rgba(225,220,201,0.3)] transition-all cursor-pointer flex-shrink-0"
+            className="ml-4 w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-lg border border-[rgba(225,220,201,0.12)] text-[#E1DCC9]/40 hover:text-[#E1DCC9] hover:border-[rgba(225,220,201,0.3)] transition-all cursor-pointer"
           >
             <CloseIcon />
           </button>
         </div>
 
-        {/* Certificate image */}
-        <div className="relative bg-[#000000]/40 flex items-center justify-center min-h-[300px] max-h-[70vh] overflow-auto p-4">
-          {cert.image ? (
-            <img
-              src={cert.image}
-              alt={`${cert.title} certificate`}
-              className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
-            />
+        {/* Certificate content */}
+        <div className="flex-1 overflow-hidden bg-[#000000]/30 min-h-[300px]">
+          {safeUrl ? (
+            cert.type === "pdf" ? (
+              <iframe
+                src={safeUrl}
+                title={cert.title}
+                className="w-full h-full border-0 min-h-[300px]"
+              />
+            ) : (
+              <div className="flex items-center justify-center p-4 h-full">
+                <img
+                  src={safeUrl}
+                  alt={`${cert.title} certificate`}
+                  className="max-w-full max-h-[65vh] object-contain rounded-lg"
+                />
+              </div>
+            )
           ) : (
             <NoCertPlaceholder />
           )}
         </div>
 
-        {/* Footer — click anywhere or use close button */}
-        <div className="px-5 py-3 border-t border-[rgba(225,220,201,0.06)]">
-          <p className="text-[10px] text-[#E1DCC9]/20 font-[Inter] tracking-wide text-center">
-            Click anywhere outside or press the × button to close
+        {/* Footer */}
+        <div className="px-5 py-3 border-t border-[rgba(225,220,201,0.06)] flex-shrink-0">
+          <p className="text-[10px] text-[#E1DCC9]/20 font-[Inter] text-center tracking-wide">
+            Click anywhere outside or press × to close
           </p>
         </div>
       </motion.div>
@@ -274,7 +280,7 @@ function CertViewer({ cert, onClose }) {
   );
 }
 
-// ── Placeholder shown when no image is set yet ────────────────────────────────
+// ── Placeholder ───────────────────────────────────────────────────────────────
 
 function NoCertPlaceholder() {
   return (
@@ -282,19 +288,14 @@ function NoCertPlaceholder() {
       <div className="w-14 h-14 rounded-xl border border-[rgba(225,220,201,0.1)] flex items-center justify-center text-[#E1DCC9]/20">
         <AwardIcon size={24} />
       </div>
-      <div>
-        <p className="text-sm text-[#E1DCC9]/35 font-[Inter]">
-          Certificate image not uploaded yet
-        </p>
-        <p className="text-xs text-[#E1DCC9]/20 font-[Inter] mt-1">
-          Place PNG/JPG in public/assets/images/certificates/
-        </p>
-      </div>
+      <p className="text-sm text-[#E1DCC9]/35 font-[Inter]">
+        Certificate file not found
+      </p>
     </div>
   );
 }
 
-// ── Shared internal components ────────────────────────────────────────────────
+// ── Icons ─────────────────────────────────────────────────────────────────────
 
 function ColumnHeading({ icon, label }) {
   return (
