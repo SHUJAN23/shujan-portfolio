@@ -1,16 +1,5 @@
 [
   {
-    "id": "pickup-truck",
-    "title": "PickUp Truck",
-    "category": "Vehicle",
-    "software": ["Blender"],
-    "tags": ["Modular", "Game Ready", "PBR"],
-    "polycount": "56.1k tris",
-    "preview": "assets/images/models/PickUp.webp",
-    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783066248/TruckModel_qsrgih.glb",
-    "featured": true
-  },
-  {
     "id": "Car1",
     "title": "Ambassador",
     "category": "Vehicle",
@@ -20,6 +9,17 @@
     "preview": "assets/images/models/Ambassador.webp",
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783078982/Ambassidor_hmph5i.glb",
     "featured": true
+  },
+{
+    "id": "Truck",
+    "title": "Desi Truck",
+    "category": "Vehical",
+    "software": ["Blender"],
+    "tags": ["Modular", "Game Ready", "PBR"],
+    "polycount": "37k tris",
+    "preview": "assets/images/models/Truck.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783175387/Lorry_l3dkgd.glb",
+    "featured": false
   },
   {
     "id": "Van",
@@ -33,15 +33,15 @@
     "featured": true
   },
   {
-    "id": "Truck",
-    "title": "Desi Truck",
-    "category": "Vehical",
+    "id": "pickup-truck",
+    "title": "PickUp Truck",
+    "category": "Vehicle",
     "software": ["Blender"],
     "tags": ["Modular", "Game Ready", "PBR"],
-    "polycount": "37k tris",
-    "preview": "assets/images/models/Truck.webp",
-    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783175387/Lorry_l3dkgd.glb",
-    "featured": false
+    "polycount": "56.1k tris",
+    "preview": "assets/images/models/PickUp.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783681690/TruckModel1_yhp4ee.glb",
+    "featured": true
   },
   {
     "id": "Windmill",
