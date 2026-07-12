@@ -49,6 +49,57 @@
       "gameplay": "https://youtu.be/_beJFIc_Z0A"
     }
   },
+  
+  {
+    "id": "hell-drive",
+    "title": "Hell Drive",
+    "description": "Level-based driving game built in Unity. Drive through obstacle-filled environments, collect coins, and minimize vehicle damage to complete each level.",
+    "thumbnail": "/assets/images/models/HellDrive.png",
+    "engine": "Unity",
+    "technologies": ["C#", "Unity", "Level Design", "Blender"],
+    "featured": true,
+    "video": {
+      "url": "https://youtu.be/sjXG0Yz4eGY",
+      "youtubeId": "sjXG0Yz4eGY",
+      "poster": "",
+      "duration": "0:54",
+      "label": "Level Showcase"
+    },
+    "breakdown": [
+      {
+        "id": "level-design",
+        "label": "Level Design",
+        "icon": "map",
+        "summary": "Iterative blockout-to-final pipeline with focus on flow and pacing.",
+        "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles."
+      },
+      {
+        "id": "collectibles",
+        "label": "Collectible System",
+        "icon": "star",
+        "summary": "Data-driven collectible spawner with persistent save state.",
+        "details": "Built a ScriptableObject-based collectible system allowing designers to define item types, spawn weights, and point values without touching code. Collected state is persisted via PlayerPrefs with a serialised bitfield for efficient storage."
+      },
+      {
+        "id": "progression",
+        "label": "Progression Design",
+        "icon": "trending-up",
+        "summary": "Unlockable levels and vehicles gated by score thresholds.",
+        "details": "Designed a meta-progression loop where star ratings (1–3 per level) unlock new vehicles and level packs. Score thresholds were tuned against playtest completion data to maintain a challenging but fair difficulty curve."
+      },
+      {
+        "id": "ui",
+        "label": "UI & Feedback",
+        "icon": "layout",
+        "summary": "Responsive Unity UI Toolkit HUD with animated score feedback.",
+        "details": "Built the in-game HUD using Unity UI Toolkit for resolution independence. Implemented animated score popups using DOTween with eased scale and fade. Speedometer needle rotates via a shader-driven UV offset for zero runtime overhead."
+      }
+    ],
+    "links": {
+      "details": "/games#hell-drive",
+      "gameplay": "https://youtu.be/sjXG0Yz4eGY"
+    }
+  },
   {
   "id": "airborne-bling",
   "title": "Airborne Bling | 3D Flight Adventure",
@@ -106,56 +157,6 @@
     "gameplay": "https://youtu.be/SEfnOgO0OQE"
   }
 },
-  {
-    "id": "hell-drive",
-    "title": "Hell Drive",
-    "description": "Level-based driving game built in Unity. Drive through obstacle-filled environments, collect coins, and minimize vehicle damage to complete each level.",
-    "thumbnail": "/assets/images/models/HellDrive.png",
-    "engine": "Unity",
-    "technologies": ["C#", "Unity", "Level Design", "Blender"],
-    "featured": true,
-    "video": {
-      "url": "https://youtu.be/sjXG0Yz4eGY",
-      "youtubeId": "sjXG0Yz4eGY",
-      "poster": "",
-      "duration": "0:54",
-      "label": "Level Showcase"
-    },
-    "breakdown": [
-      {
-        "id": "level-design",
-        "label": "Level Design",
-        "icon": "map",
-        "summary": "Iterative blockout-to-final pipeline with focus on flow and pacing.",
-        "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles."
-      },
-      {
-        "id": "collectibles",
-        "label": "Collectible System",
-        "icon": "star",
-        "summary": "Data-driven collectible spawner with persistent save state.",
-        "details": "Built a ScriptableObject-based collectible system allowing designers to define item types, spawn weights, and point values without touching code. Collected state is persisted via PlayerPrefs with a serialised bitfield for efficient storage."
-      },
-      {
-        "id": "progression",
-        "label": "Progression Design",
-        "icon": "trending-up",
-        "summary": "Unlockable levels and vehicles gated by score thresholds.",
-        "details": "Designed a meta-progression loop where star ratings (1–3 per level) unlock new vehicles and level packs. Score thresholds were tuned against playtest completion data to maintain a challenging but fair difficulty curve."
-      },
-      {
-        "id": "ui",
-        "label": "UI & Feedback",
-        "icon": "layout",
-        "summary": "Responsive Unity UI Toolkit HUD with animated score feedback.",
-        "details": "Built the in-game HUD using Unity UI Toolkit for resolution independence. Implemented animated score popups using DOTween with eased scale and fade. Speedometer needle rotates via a shader-driven UV offset for zero runtime overhead."
-      }
-    ],
-    "links": {
-      "details": "/games#hell-drive",
-      "gameplay": "https://youtu.be/sjXG0Yz4eGY"
-    }
-  },
   {
   "id": "clash-of-champions",
   "title": "Clash of Champions",

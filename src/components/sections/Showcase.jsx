@@ -37,8 +37,8 @@ export default function Showcase() {
         <div aria-hidden="true" className="w-full border-t border-[rgba(225,220,201,0.06)] mb-20 lg:mb-32" />
 
         <Container>
-          {/* Header row */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          {/* Header row — title only */}
+          <div className="mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,36 +51,6 @@ export default function Showcase() {
                 subtitle="Game-ready assets built in Blender — optimized for real-time rendering."
                 align="left"
               />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex-shrink-0"
-            >
-              <Link
-                to="/models"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#E1DCC9]/50 hover:text-[#E1DCC9] transition-colors font-[Inter] group"
-              >
-                View full library
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
             </motion.div>
           </div>
 
@@ -105,6 +75,47 @@ export default function Showcase() {
               ))}
             </motion.div>
           )}
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-14 mb-2 flex justify-center"
+          >
+            <Link
+              to="/models"
+              className="
+                group inline-flex items-center gap-4
+                px-8 py-4 rounded-2xl
+                bg-[#1F150C] border border-[rgba(225,220,201,0.15)]
+                hover:border-[rgba(225,220,201,0.35)] hover:bg-[#1F150C]/80
+                
+                transition-all duration-300
+              "
+            >
+              <div className="flex flex-col items-center gap-0.5 text-center">
+                <span className="text-base font-bold text-[#E1DCC9] font-[Space_Grotesk] tracking-wide">
+                  View Full Asset Library
+                </span>
+                
+              </div>
+              <span className="
+                w-9 h-9 rounded-xl
+                border border-[rgba(225,220,201,0.5)] text-[#E1DCC9]/
+                
+                flex items-center justify-center flex-shrink-0
+                group-hover:translate-x-1
+                transition-transform duration-300
+              ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </Link>
+          </motion.div>
         </Container>
       </section>
 
@@ -138,3 +149,4 @@ function EmptyState() {
     </div>
   );
 }
+
