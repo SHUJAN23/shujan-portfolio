@@ -90,11 +90,7 @@ export default function Education() {
             {/* ── Education timeline ── */}
             <div>
               <ColumnHeading icon={<GraduationIcon />} label="Education" />
-              <div className="relative mt-6">
-                <div
-                  aria-hidden="true"
-                  className="absolute left-[5px] top-2 bottom-2 w-px bg-[rgba(225,220,201,0.08)]"
-                />
+              <div className="mt-6 flex flex-col gap-6">
                 {education.map((item, i) => (
                   <motion.div
                     key={item.id}
@@ -103,21 +99,34 @@ export default function Education() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-40px" }}
-                    className="relative pl-8 pb-10 last:pb-0"
+                    className="flex gap-4"
                   >
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 top-[6px] w-[11px] h-[11px] rounded-full bg-[#412D15] border-2 border-[rgba(225,220,201,0.3)]"
-                    />
-                    <span className="text-[11px] font-mono text-[#E1DCC9]/25 tracking-wider">
-                      {item.period}
-                    </span>
-                    <h4 className="mt-1.5 text-base font-semibold text-[#E1DCC9] font-[Space_Grotesk] leading-snug">
-                      {item.degree}
-                    </h4>
-                    <p className="mt-1 text-sm text-[#E1DCC9]/45 font-[Inter]">
-                      {item.institution}
-                    </p>
+                    {/* Left: dot + line column — fixed width keeps it clear of text */}
+                    <div className="flex flex-col items-center flex-shrink-0 pt-1">
+                      <span
+                        aria-hidden="true"
+                        className="w-3 h-3 rounded-full bg-[#412D15] border-2 border-[rgba(225,220,201,0.35)] flex-shrink-0"
+                      />
+                      {i < education.length - 1 && (
+                        <div
+                          aria-hidden="true"
+                          className="flex-1 w-px bg-[rgba(225,220,201,0.08)] mt-2 min-h-[40px]"
+                        />
+                      )}
+                    </div>
+
+                    {/* Right: text content — never overlaps the dot */}
+                    <div className="flex flex-col gap-1 pb-2">
+                      <span className="text-[11px] font-mono text-[#E1DCC9]/30 tracking-wider">
+                        {item.period}
+                      </span>
+                      <h4 className="text-base font-semibold text-[#E1DCC9] font-[Space_Grotesk] leading-snug">
+                        {item.degree}
+                      </h4>
+                      <p className="text-sm text-[#E1DCC9]/45 font-[Inter]">
+                        {item.institution}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
