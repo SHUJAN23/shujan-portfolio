@@ -131,19 +131,19 @@ export default function Hero() {
               Blender.
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — View Projects hidden, only Download Resume shown */}
             <motion.div
               variants={fadeUp}
               className="flex flex-wrap gap-4 pt-2"
             >
-              <Button as="a" href="/games" variant="primary" size="lg">
+              {/* <Button as="a" href="/games" variant="primary" size="lg">
                 View Projects
                 <ArrowRightIcon />
-              </Button>
+              </Button> */}
               <Button
                 as="a"
                 href="/SHUJANJul.pdf"
-                variant="outline"
+                variant="primary"
                 size="lg"
                 external
               >

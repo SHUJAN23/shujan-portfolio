@@ -80,40 +80,27 @@ export default function Showcase() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-14 mb-2 flex justify-center"
+            className="mt-32 py-6 flex justify-center"
           >
             <Link
               to="/models"
               className="
-                group inline-flex items-center gap-4
-                px-8 py-4 rounded-2xl
-                bg-[#1F150C] border border-[rgba(225,220,201,0.15)]
-                hover:border-[rgba(225,220,201,0.35)] hover:bg-[#1F150C]/80
-                
+                group inline-flex items-center gap-2
+                px-6 py-3 rounded-lg
+                bg-[#E1DCC9] text-[#000000]
+                font-semibold text-sm font-[Inter]
+                hover:bg-[#E1DCC9]/80
                 transition-all duration-300
               "
             >
-              <div className="flex flex-col items-center gap-0.5 text-center">
-                <span className="text-base font-bold text-[#E1DCC9] font-[Space_Grotesk] tracking-wide">
-                  View Full Asset Library
-                </span>
-                
-              </div>
-              <span className="
-                w-9 h-9 rounded-xl
-                border border-[rgba(225,220,201,0.5)] text-[#E1DCC9]/
-                
-                flex items-center justify-center flex-shrink-0
-                group-hover:translate-x-1
-                transition-transform duration-300
-              ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </span>
+              View Full Asset Library
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                className="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </motion.div>
         </Container>
