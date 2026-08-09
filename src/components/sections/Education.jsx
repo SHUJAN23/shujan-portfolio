@@ -24,20 +24,27 @@ const education = [
 const certifications = [
   {
     id: "cert-1",
+    title: "Low Poly Character Modeling and Animation in Blender Certificate",
+    issuer: "Udemy",
+    file: "public/assets/images/certificates/CharacterRigging.pdf",
+    type: "pdf",
+  },
+  {
+    id: "cert-2",
     title: "Unity 3D Game Development Internship Certificate",
     issuer: "Abhima Technologies",
     file: "/assets/images/certificates/Internship Certificate - Shujan.pdf",
     type: "pdf",
   },
   {
-    id: "cert-2",
+    id: "cert-3",
     title: "C# Unity 3D Mobile Car Racing Game Development",
     issuer: "Udemy",
     file: "/assets/images/certificates/Unity 3d Car Racing Game.pdf",
     type: "pdf",
   },
   {
-    id: "cert-3",
+    id: "cert-4",
     title: "Game Development for Beginners: 3D Car Game in Unity",
     issuer: "Udemy",
     file: "/assets/images/certificates/Unity 3d Car game.pdf",

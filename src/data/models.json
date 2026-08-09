@@ -10,6 +10,28 @@
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783078982/Ambassidor_hmph5i.glb",
     "featured": true
   },
+  {
+    "id": "Plane1",
+    "title": "WarPlane",
+    "category": "Vehicle",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "Solidified"],
+    "polycount": "16k tris",
+    "preview": "assets/images/models/Plane.png",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1785340786/Airplane_kabiwv.glb",
+    "featured": true
+  },
+  {
+    "id": "Child",
+    "title": "Child Character",
+    "category": "Human",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "Rigged"],
+    "polycount": "2k tris",
+    "preview": "assets/images/models/Child.png",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1786181145/Child2_ly7z4i.glb",
+    "featured": true
+  },
 {
     "id": "Truck",
     "title": "Desi Truck",
@@ -30,7 +52,7 @@
     "polycount": "37k tris",
     "preview": "assets/images/models/Van.webp",
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783176585/OMini_eeotk7.glb",
-    "featured": true
+    "featured": false
   },
   {
     "id": "pickup-truck",
@@ -41,7 +63,7 @@
     "polycount": "56.1k tris",
     "preview": "assets/images/models/PickUp.webp",
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783681690/TruckModel1_yhp4ee.glb",
-    "featured": true
+    "featured": false
   },
   {
     "id": "Windmill",

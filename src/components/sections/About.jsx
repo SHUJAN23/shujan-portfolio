@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import SectionTitle from "../common/SectionTitle";
 import Container from "../layout/Container";
 // Profile photo served from public/assets — no JS import needed
-const profilePhoto = "/assets/images/shujan-profile.jpg";
+const profilePhoto = "/assets/images/shujan-profile.jpeg";
 
 // Skills/technologies organized by category
 const expertise = [
@@ -116,7 +116,7 @@ export default function About() {
                 <span className="absolute bottom-2 right-2 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#000000]/80 border border-[rgba(225,220,201,0.15)] backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-[10px] font-medium text-[#E1DCC9]/60 font-[Inter] tracking-wide">
-                    Available
+                    {/* Available */}
                   </span>
                 </span>
 
