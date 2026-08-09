@@ -113,17 +113,30 @@ function ModelGroup() {
   const smoothed = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (isTouchDevice) return;
     function onMouseMove(e) {
       mouse.x =  (e.clientX / window.innerWidth  - 0.5) * 2;
       mouse.y = -(e.clientY / window.innerHeight - 0.5) * 2;
     }
     function onMouseLeave() { mouse.x = 0; mouse.y = 0; }
+
+    // Touch support — use first touch point
+    function onTouchMove(e) {
+      if (!e.touches[0]) return;
+      mouse.x =  (e.touches[0].clientX / window.innerWidth  - 0.5) * 2;
+      mouse.y = -(e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+    }
+    function onTouchEnd() { mouse.x = 0; mouse.y = 0; }
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("touchmove",  onTouchMove, { passive: true });
+    window.addEventListener("touchend",   onTouchEnd);
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("touchmove",  onTouchMove);
+      window.removeEventListener("touchend",   onTouchEnd);
     };
   }, []);
 
