@@ -76,17 +76,7 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-14 py-6 flex justify-center"
         >
-          <Link
-            to="/games"
-            className="
-              group inline-flex items-center gap-2
-              px-6 py-3 rounded-lg
-              bg-[#E1DCC9] text-[#000000]
-              font-semibold text-sm font-[Inter]
-              hover:bg-[#E1DCC9]/80
-              transition-all duration-300
-            "
-          >
+          <Link to="/games" className="btn btn-primary btn-lg group">
             View All Projects
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
               fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"

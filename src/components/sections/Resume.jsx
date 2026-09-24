@@ -91,7 +91,7 @@ export default function Resume() {
           >
             <Button
               as="a"
-              href="/SHUJANJul.pdf"
+              href="/SHUJAN__Sep.pdf"
               variant="outline"
               size="md"
               external

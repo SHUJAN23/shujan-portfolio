@@ -83,14 +83,7 @@ function ModelCard({ model, onViewModel }) {
         {/* View Model button */}
         <button
           onClick={() => onViewModel?.(model)}
-          className="
-            mt-auto w-full flex items-center justify-center gap-2
-            px-4 py-2.5 rounded-lg text-sm font-medium
-            text-[#E1DCC9] border border-[rgba(225,220,201,0.2)]
-            hover:border-[rgba(225,220,201,0.5)] hover:bg-[rgba(225,220,201,0.05)]
-            transition-all duration-200 font-[Inter] cursor-pointer
-            group/btn
-          "
+          className="btn btn-outline w-full mt-auto group/btn"
           aria-label={`View 3D model: ${title}`}
         >
           <CubeIcon />

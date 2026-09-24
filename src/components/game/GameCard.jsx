@@ -45,11 +45,6 @@ function GameCard({ game, featured = false }) {
         ) : (
           <ThumbnailPlaceholder title={title} />
         )}
-
-        {/* Engine badge */}
-        <span className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase bg-[#000000]/80 text-[#E1DCC9]/80 border border-[rgba(225,220,201,0.15)] rounded-md font-[Inter] backdrop-blur-sm">
-          {engine}
-        </span>
       </div>
 
       {/* Content — justify-between ensures tags+buttons always sit at the bottom */}
@@ -84,26 +79,22 @@ function GameCard({ game, featured = false }) {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 pt-1">
             {showViewProject && (
-              <Link
-                to={links.details}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#000000] bg-[#E1DCC9] rounded-lg hover:bg-[#E1DCC9]/80 transition-colors font-[Inter]"
-              >
+              <Link to={links.details} className="btn btn-primary">
                 View Project
                 <ArrowRightIcon />
               </Link>
             )}
-
             {hasGameplay && (
               <a
                 href={links.gameplay}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#E1DCC9] border border-[rgba(225,220,201,0.25)] rounded-lg hover:border-[rgba(225,220,201,0.5)] hover:bg-[rgba(225,220,201,0.05)] transition-all font-[Inter]"
+              className="btn btn-outline"
               >
                 <PlayIcon />
-                Gameplay
+                Gameplay Vid
               </a>
             )}
           </div>

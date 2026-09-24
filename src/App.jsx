@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 
 import Layout from "./components/layout/Layout";
 import Loader from "./components/common/Loader";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 // Lazy-loaded pages for performance
 const Home = lazy(() => import("./pages/Home"));
@@ -13,6 +14,7 @@ const About = lazy(() => import("./pages/About"));
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout>
         <Suspense fallback={<Loader message="Loading" />}>
           <Routes>

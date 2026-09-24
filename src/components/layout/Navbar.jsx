@@ -50,7 +50,7 @@ export default function Navbar() {
           }
         `}
       >
-        <nav className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+        <nav className="page-container h-full flex items-center justify-between">
           {/* Logo */}
           <Link
             to="/"
@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Button
               as="a"
-              href="/SHUJANJul.pdf"
+              href="/SHUJAN__Sep.pdf"
               variant="outline"
               size="sm"
               external
@@ -174,7 +174,7 @@ export default function Navbar() {
                 >
                   <Button
                     as="a"
-                    href="/SHUJANJul.pdf"
+                    href="/SHUJAN__Sep.pdf"
                     variant="primary"
                     size="md"
                     external

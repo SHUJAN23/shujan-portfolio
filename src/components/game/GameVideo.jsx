@@ -154,15 +154,7 @@ function GameVideo({ game }) {
               {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </span>
 
-            {/* YouTube badge on the play button */}
-            {isYouTube && (
-              <span className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FF0000]/90 backdrop-blur-sm">
-                <YouTubeIcon />
-                <span className="text-[10px] font-semibold text-white font-[Inter] tracking-wide">
-                  YouTube
-                </span>
-              </span>
-            )}
+            {/* YouTube badge removed */}
           </button>
         )}
 
@@ -192,9 +184,7 @@ function GameVideo({ game }) {
           {title}
         </h3>
         <p className="text-xs text-[#E1DCC9]/35 font-[Inter]">
-          {isYouTube
-            ? "Click to watch on YouTube embed"
-            : hasVideo
+          {hasVideo
             ? "Hover to preview · Click for controls"
             : "Video coming soon"}
         </p>
