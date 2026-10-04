@@ -7,7 +7,7 @@ import ModelCard from "../model/ModelCard";
 import ModelViewer from "../model/ModelViewer";
 import modelsData from "../../data/models.json";
 
-const featuredModels = modelsData.filter((m) => m.featured);
+const featuredModels = modelsData.filter((m) => m.featured).slice(0, 3);
 
 const listVariants = {
   hidden: {},
