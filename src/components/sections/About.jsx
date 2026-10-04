@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import SectionTitle from "../common/SectionTitle";
 import Container from "../layout/Container";
 // Profile photo served from public/assets — no JS import needed
-const profilePhoto = "/assets/images/shujan-profile.jpeg";
+const profilePhoto = "/assets/images/ShujanDP.jpeg";
 
 // Skills/technologies organized by category
 const expertise = [

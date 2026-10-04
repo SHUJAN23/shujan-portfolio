@@ -12,8 +12,8 @@ function GameCard({ game, featured = false }) {
   const { pathname } = useLocation();
 
   const hasGameplay = Boolean(links?.gameplay);
-  // Hide "View Project" when already on the games page — it would link to itself
-  const showViewProject = links?.details && pathname !== "/games";
+  // Hide "View Project" when on the home page or the games page
+  const showViewProject = links?.details && pathname !== "/games" && pathname !== "/";
 
   return (
     <article

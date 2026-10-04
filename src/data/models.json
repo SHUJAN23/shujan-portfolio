@@ -6,8 +6,74 @@
     "software": ["Blender"],
     "tags": ["Modular", "Game Ready", "Solidified"],
     "polycount": "32k tris",
-    "preview": "assets/images/models/Ambassador.webp",
-    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783078982/Ambassidor_hmph5i.glb",
+    "preview": "assets/images/models/Ambassdor.webp",
+    "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1791042236/Ambassidor_ubuedi.glb",
+    "featured": true
+  },
+   {
+    "id": "Table1",
+    "title": "Medival Table",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "4.1k tris",
+    "preview": "assets/images/models/Table.webp",
+    "model": "",
+    "featured": true
+  },
+ {
+    "id": "Chair1",
+    "title": "Medival Chair",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "1010 tris",
+    "preview": "assets/images/models/Chair.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "Books1",
+    "title2": "Medival Books",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "608 tris",
+    "preview": "assets/images/models/Books.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "Bench1",
+    "title": "Bench",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "Solidified"],
+    "polycount": "828 tris",
+    "preview": "assets/images/models/Bench.png",
+    "model": "",
+    "featured": true
+  },
+   {
+    "id": "Mug1",
+    "title": "Medival Thin Mug",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "1.5k tris",
+    "preview": "assets/images/models/Mug_Thin.webp",
+    "model": "",
+    "featured": true
+  },
+   {
+    "id": "Mug2",
+    "title": "Medival ThickMug",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly", "Game Ready", "PBR"],
+    "polycount": "1.5k tris",
+    "preview": "assets/images/models/Mug_Thick.webp",
+    "model": "",
     "featured": true
   },
   {
@@ -17,7 +83,7 @@
     "software": ["Blender"],
     "tags": ["Low Poly", "Game Ready", "Solidified"],
     "polycount": "16k tris",
-    "preview": "assets/images/models/Plane.png",
+    "preview": "assets/images/models/Airplane.webp",
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1785340786/Airplane_kabiwv.glb",
     "featured": true
   },
@@ -32,10 +98,11 @@
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1786181145/Child2_ly7z4i.glb",
     "featured": true
   },
+   
 {
     "id": "Truck",
     "title": "Desi Truck",
-    "category": "Vehical",
+    "category": "Vehicle",
     "software": ["Blender"],
     "tags": ["Modular", "Game Ready", "PBR"],
     "polycount": "37k tris",
@@ -68,7 +135,7 @@
   {
     "id": "Windmill",
     "title": "Windmill",
-    "category": "Objects",
+    "category": "Props",
     "software": ["Blender"],
     "tags": ["Low Poly", "Game Ready", "PBR"],
     "polycount": "5k tris",
@@ -79,7 +146,7 @@
   {
     "id": "FuelCan",
     "title": "Jerrycan",
-    "category": "Objects",
+    "category": "Props",
     "software": ["Blender"],
     "tags": ["Low Poly", "Game Ready", "PBR"],
     "polycount": "2k tris",
@@ -99,5 +166,6 @@
     "model": "https://res.cloudinary.com/dhzbjktti/image/upload/v1783079531/Spanner_tgvqah.glb",
     "featured": false
   }
+ 
   
 ]
