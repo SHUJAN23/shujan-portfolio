@@ -58,7 +58,6 @@ function ModelCard({ model, onViewModel }) {
                 w-8 h-8 items-center justify-center
                 rounded-lg bg-[#000000]/70 border border-[rgba(225,220,201,0.2)]
                 text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:border-[rgba(225,220,201,0.5)]
-                opacity-0 group-hover:opacity-100
                 transition-all duration-200
                 backdrop-blur-sm
               "

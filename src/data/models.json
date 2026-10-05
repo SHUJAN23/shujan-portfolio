@@ -34,7 +34,7 @@
   },
   {
     "id": "Books1",
-    "title2": "Medival Books",
+    "title": "Medival Books",
     "category": "Props",
     "software": ["Blender"],
     "tags": ["Low Poly", "Game Ready", "PBR"],
@@ -158,7 +158,7 @@
    {
     "id": "Spanner",
     "title": "Spanner",
-    "category": "Objects",
+    "category": "Props",
     "software": ["Blender"],
     "tags": ["Low Poly", "Game Ready", "PBR"],
     "polycount": "8k tris",
