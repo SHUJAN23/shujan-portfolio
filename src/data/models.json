@@ -55,13 +55,19 @@
     "id": "Barrel1",
     "title": "Medival Barrel",
     "category": "Props",
-    "software":["Blender"],
-    "tags":["Low Poly","Game Ready","PBR"],
-    "polycount":"2.1k tris",
-    "preview":"assets/images/models/Barrel/Barrel1.webp",
-    "preview2":"assets/images/models/Barrel/Barrel2.webp",
-    "preview3":"assets/images/models/Barrel/Barrel3.webp",
-    "model":"",
+    "software": [
+      "Blender"
+    ],
+    "tags": [
+      "Low Poly",
+      "Game Ready",
+      "PBR"
+    ],
+    "polycount": "2.1k tris",
+    "preview": "assets/images/models/Barrel/Barrel1.webp",
+    "preview2": "assets/images/models/Barrel/Barrel2.webp",
+    "preview3": "assets/images/models/Barrel/Barrel3.webp",
+    "model": "",
     "featured": true
   },
   {
@@ -132,7 +138,6 @@
     "polycount": "1087 tris",
     "preview": "assets/images/models/SmallCrate/smallCrate1.webp",
     "preview2": "assets/images/models/SmallCrate/smallCrate2webp",
-
     "model": "",
     "featured": true
   },
