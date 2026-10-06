@@ -13,7 +13,7 @@ const CARDS = [
     src: "/assets/images/models/ScrapWars.png",
     href: "/games#demolition-derby-survival",
     // top-left quadrant — large hero image
-    style: { left: "4%",  top: "6%",  width: "28vw", rotate: "-4deg", zIndex: 3 },
+    style: { left: "4%", top: "6%", width: "28vw", rotate: "-4deg", zIndex: 3 },
   },
   {
     id: "hell-drive",
@@ -22,7 +22,7 @@ const CARDS = [
     src: "/assets/images/models/HellDrive.png",
     href: "/games#hell-drive",
     // top-right
-    style: { right: "5%", top: "4%",  width: "24vw", rotate: "5deg",  zIndex: 2 },
+    style: { right: "5%", top: "4%", width: "24vw", rotate: "5deg", zIndex: 2 },
   },
   {
     id: "airborne-bling",
@@ -31,7 +31,7 @@ const CARDS = [
     src: "/assets/images/models/Abb1.png",
     href: "/games#airborne-bling",
     // bottom-left
-    style: { left: "6%",  bottom: "6%", width: "22vw", rotate: "3deg",  zIndex: 2 },
+    style: { left: "6%", bottom: "6%", width: "22vw", rotate: "3deg", zIndex: 2 },
   },
   {
     id: "clash-of-champions",
@@ -56,8 +56,8 @@ export default function FeaturedProjects() {
   const handleMouseMove = useCallback((e) => {
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
-    rawX.set((e.clientX - rect.left - rect.width  / 2) / rect.width  * 24);
-    rawY.set((e.clientY - rect.top  - rect.height / 2) / rect.height * 16);
+    rawX.set((e.clientX - rect.left - rect.width / 2) / rect.width * 24);
+    rawY.set((e.clientY - rect.top - rect.height / 2) / rect.height * 16);
   }, [rawX, rawY]);
 
   const handleMouseLeave = useCallback(() => {
@@ -148,10 +148,22 @@ export default function FeaturedProjects() {
             <Link
               to="/games"
               aria-label="Explore all my game projects"
-              className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#E1DCC9] text-[#000000] text-sm font-bold font-[Inter] tracking-[0.06em] uppercase shadow-[0_0_40px_rgba(225,220,201,0.12)] hover:bg-white hover:shadow-[0_0_60px_rgba(225,220,201,0.25)] transition-all duration-300"
+              className="group inline-flex items-center justify-center gap-3 min-w-[280px] px-10 py-3.5 rounded-full bg-[#E1DCC9] text-[#000000] text-sm font-bold font-[Inter] tracking-[0.08em] uppercase shadow-[0_0_40px_rgba(225,220,201,0.12)] hover:bg-white hover:shadow-[0_0_60px_rgba(225,220,201,0.25)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 text-center"
             >
               Explore My Games
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="group-hover:translate-x-1 transition-transform duration-200">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="group-hover:translate-x-1 transition-transform duration-200"
+              >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -219,9 +231,25 @@ export default function FeaturedProjects() {
 
           {/* Mobile CTA */}
           <div className="flex justify-center">
-            <Link to="/games" className="btn btn-primary btn-lg group">
+            <Link
+              to="/games"
+              aria-label="Explore all my game projects"
+              className="group inline-flex items-center justify-center gap-3 min-w-[260px] px-8 py-3.5 rounded-full bg-[#E1DCC9] text-[#000000] text-sm font-bold font-[Inter] tracking-[0.08em] uppercase shadow-[0_0_30px_rgba(225,220,201,0.12)] hover:bg-white transition-all duration-300 text-center"
+            >
               Explore My Games
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="group-hover:translate-x-1 transition-transform">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="group-hover:translate-x-1 transition-transform duration-200"
+              >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -251,9 +279,9 @@ function ScatteredCard({ card, index, px, py }) {
         position: "absolute",
         zIndex: card.style.zIndex,
         width: card.style.width,
-        ...(card.style.left   !== undefined && { left:   card.style.left }),
-        ...(card.style.right  !== undefined && { right:  card.style.right }),
-        ...(card.style.top    !== undefined && { top:    card.style.top }),
+        ...(card.style.left !== undefined && { left: card.style.left }),
+        ...(card.style.right !== undefined && { right: card.style.right }),
+        ...(card.style.top !== undefined && { top: card.style.top }),
         ...(card.style.bottom !== undefined && { bottom: card.style.bottom }),
         x: useParallaxValue(px, depth),
         y: useParallaxValue(py, depth),

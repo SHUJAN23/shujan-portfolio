@@ -2,7 +2,6 @@ import Hero from "../components/sections/Hero";
 import About from "../components/sections/About";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Showcase from "../components/sections/Showcase";
-import GameplayVideos from "../components/sections/GameplayVideos";
 // import TechnicalBreakdown from "../components/sections/TechnicalBreakdown"; // lives in /games page only
 // import Skills from "../components/sections/Skills";
 import Education from "../components/sections/Education";
@@ -15,7 +14,6 @@ export default function Home() {
       <About />
       <FeaturedProjects />
       <Showcase />
-      <GameplayVideos />
       {/* <TechnicalBreakdown /> */}
       {/* <Skills /> */}
       <Education />

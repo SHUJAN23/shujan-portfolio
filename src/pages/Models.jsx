@@ -69,11 +69,11 @@ export default function Models() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex flex-col sm:flex-row sm:items-center gap-4 py-6"
+            className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6"
           >
             {/* Category pills */}
             <div
-              className="flex items-center gap-2 overflow-x-auto pb-1 flex-1"
+              className="flex items-center gap-3 overflow-x-auto pb-1 flex-1"
               role="group"
               aria-label="Filter by category"
               style={{ scrollbarWidth: "none" }}
@@ -83,14 +83,20 @@ export default function Models() {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   aria-pressed={activeCategory === cat}
-                  className={`flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium font-[Inter] border transition-all duration-200 cursor-pointer ${
+                  className={`flex-shrink-0 inline-flex items-center justify-center gap-2.5 min-w-[105px] px-6 py-2.5 rounded-xl text-sm font-semibold font-[Inter] border transition-all duration-200 cursor-pointer ${
                     activeCategory === cat
-                      ? "bg-[#E1DCC9] text-[#000000] border-[#E1DCC9]"
-                      : "text-[#E1DCC9]/50 border-[rgba(225,220,201,0.15)] hover:border-[rgba(225,220,201,0.35)] hover:text-[#E1DCC9]"
+                      ? "bg-[#E1DCC9] text-[#000000] border-[#E1DCC9] shadow-[0_0_24px_rgba(225,220,201,0.2)]"
+                      : "bg-[#0D0D0D] text-[#E1DCC9]/60 border-[rgba(225,220,201,0.14)] hover:border-[rgba(225,220,201,0.35)] hover:text-[#E1DCC9] hover:bg-[#15100A]"
                   }`}
                 >
-                  {cat}
-                  <span className={`text-[10px] font-mono ${activeCategory === cat ? "text-[#000000]/50" : "text-[#E1DCC9]/25"}`}>
+                  <span>{cat}</span>
+                  <span
+                    className={`text-[11px] font-mono px-2 py-0.5 rounded-full ${
+                      activeCategory === cat
+                        ? "bg-black/15 text-black font-bold"
+                        : "bg-[rgba(225,220,201,0.06)] text-[#E1DCC9]/40"
+                    }`}
+                  >
                     {countFor(cat)}
                   </span>
                 </button>
@@ -98,16 +104,30 @@ export default function Models() {
             </div>
 
             {/* Search */}
-            <div className="relative flex-shrink-0 sm:w-56">
-              <SearchIcon />
+            <div className="relative flex-shrink-0 w-full sm:w-72 md:w-80">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#E1DCC9]/45 flex items-center justify-center">
+                <SearchIcon />
+              </span>
               <input
-                type="search"
+                type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search assets..."
                 aria-label="Search assets"
-                className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-[#1F150C] border border-[rgba(225,220,201,0.12)] text-sm text-[#E1DCC9]/80 placeholder-[#E1DCC9]/25 font-[Inter] focus:outline-none focus:border-[rgba(225,220,201,0.35)] transition-colors"
+                className="w-full pl-11 pr-10 py-2.5 rounded-xl bg-[#0D0D0D] border border-[rgba(225,220,201,0.18)] text-sm text-[#E1DCC9] placeholder-[#E1DCC9]/40 font-[Inter] focus:outline-none focus:border-[#E1DCC9] focus:ring-1 focus:ring-[#E1DCC9]/30 transition-all duration-200"
               />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded-full bg-[rgba(225,220,201,0.1)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[rgba(225,220,201,0.2)] transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              )}
             </div>
           </motion.div>
 
@@ -236,18 +256,16 @@ function AssetCard({ model, onViewModel }) {
             </div>
           )}
 
-          {/* View Model CTA */}
-          {hasModel && (
-            <button
-              onClick={() => onViewModel?.(model)}
-              className="btn btn-outline w-full mt-auto group/btn"
-              aria-label={`View 3D model: ${title}`}
-            >
-              <CubeIcon />
-              View Model
-              <ArrowIcon />
-            </button>
-          )}
+          {/* View Model / Details CTA */}
+          <button
+            onClick={() => onViewModel?.(model)}
+            className="btn btn-outline w-full mt-auto group/btn"
+            aria-label={hasModel ? `View 3D model: ${title}` : `View asset details: ${title}`}
+          >
+            <CubeIcon />
+            {hasModel ? "View 3D Model" : "View Details"}
+            <ArrowIcon />
+          </button>
         </div>
       </article>
 
@@ -309,7 +327,7 @@ function Placeholder({ title }) {
 
 function SearchIcon() {
   return (
-    <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-[#E1DCC9]/25 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
     </svg>
   );

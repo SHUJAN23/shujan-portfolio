@@ -100,18 +100,16 @@ function ModelCard({ model, onViewModel }) {
             </div>
           )}
 
-          {/* View Model button — only shown when a 3D model URL exists */}
-          {hasModel && (
-            <button
-              onClick={() => onViewModel?.(model)}
-              className="btn btn-outline w-full mt-auto group/btn"
-              aria-label={`View 3D model: ${title}`}
-            >
-              <CubeIcon />
-              View Model
-              <ArrowRightIcon />
-            </button>
-          )}
+          {/* View Model / Details button */}
+          <button
+            onClick={() => onViewModel?.(model)}
+            className="btn btn-outline w-full mt-auto group/btn"
+            aria-label={hasModel ? `View 3D model: ${title}` : `View asset details: ${title}`}
+          >
+            <CubeIcon />
+            {hasModel ? "View 3D Model" : "View Details"}
+            <ArrowRightIcon />
+          </button>
         </div>
       </article>
 
