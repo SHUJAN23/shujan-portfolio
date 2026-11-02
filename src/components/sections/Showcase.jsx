@@ -43,10 +43,8 @@ export default function Showcase() {
     <section
       id="asset-library"
       aria-label="3D Asset Showcase"
-      className="py-20 lg:py-32 bg-[#000000]"
+      className="border-t border-[rgba(225,220,201,0.08)] pt-8 pb-16 lg:pt-10 lg:pb-24 bg-[#000000]"
     >
-      <div aria-hidden="true" className="w-full border-t border-[rgba(225,220,201,0.06)] mb-20 lg:mb-32" />
-
       <Container>
 
         {/* ── Heading ── */}
@@ -55,7 +53,7 @@ export default function Showcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mb-10"
+          className="mb-8"
         >
           <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#E1DCC9]/35 font-[Inter]">
             Asset Library

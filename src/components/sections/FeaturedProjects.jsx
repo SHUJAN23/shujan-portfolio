@@ -75,7 +75,7 @@ export default function FeaturedProjects() {
         onMouseLeave={handleMouseLeave}
         aria-labelledby="projects-heading"
         className="hidden lg:block relative bg-[#000000] overflow-hidden select-none"
-        style={{ height: "100vh", minHeight: "640px", maxHeight: "900px" }}
+        style={{ height: "80vh", minHeight: "560px", maxHeight: "760px", borderTop: "1px solid rgba(225,220,201,0.06)" }}
       >
         {/* Atmospheric glow */}
         <div
@@ -175,7 +175,7 @@ export default function FeaturedProjects() {
       <section
         id="projects-mobile"
         aria-labelledby="projects-heading-mobile"
-        className="lg:hidden bg-[#000000] py-20"
+        className="lg:hidden bg-[#000000] py-14 border-t border-[rgba(225,220,201,0.06)]"
       >
         <Container>
           <motion.div

@@ -5,8 +5,8 @@ import Button from "../common/Button";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Projects", path: "/games" },
   { name: "Asset Library", path: "/models" },
+  { name: "Projects", path: "/games" },
   { name: "About", path: "/about" },
 ];
 

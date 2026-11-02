@@ -39,14 +39,8 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-20 lg:py-32 bg-[#000000]"
+      className="border-t border-[rgba(225,220,201,0.08)] pt-8 pb-10 lg:pt-10 lg:pb-12 bg-[#000000]"
     >
-      {/* Section divider */}
-      <div
-        aria-hidden="true"
-        className="w-full border-t border-[rgba(225,220,201,0.06)] mb-20 lg:mb-32"
-      />
-
       <Container>
         {/* Single column — form commented out, left info centred */}
         <div className="max-w-xl">
@@ -55,7 +49,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-6"
           >
             <SectionTitle
               label="Get In Touch"

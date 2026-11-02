@@ -160,6 +160,44 @@
     "featured": true
   },
   {
+    "id": "Chest Large1",
+    "title": "Chest Large",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly","Game Ready","PBR"],
+    "polycount": "6.5k tris",
+    "preview": "assets/images/models/ChestLarge/Chest1.webp",
+    "preview2": "assets/images/models/ChestLarge/Chest2.webp",
+    "preview3": "assets/images/models/ChestLarge/Chest3.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "TreasureChest1",
+    "title": "Treasure Chest",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly","Game Ready","PBR"],
+    "polycount": "83k tris",
+    "preview": "assets/images/models/TreasureChest/TChest1.webp",
+    "preview2": "assets/images/models/TreasureChest/TChest2.webp",
+    "preview3": "assets/images/models/TreasureChest/TChest3.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "ChestSmall1",
+    "title": "Chest Small",
+    "category": "Props",
+    "software": ["Blender"],
+    "tags": ["Low Poly","Game Ready","PBR"],
+    "polycount": "3k tris",
+    "preview": "assets/images/models/ChestSmall/SmallChest1.webp",
+    "preview2": "assets/images/models/ChestSmall/SmallChest2.webp",
+    "model": "",
+    "featured": true
+  },
+  {
     "id": "Table1",
     "title": "Medival Table",
     "category": "Props",
@@ -238,7 +276,7 @@
     "tags": [
       "Low Poly",
       "Game Ready",
-      "Rigged"
+      ""
     ],
     "polycount": "2k tris",
     "preview": "assets/images/models/Child.png",
@@ -255,7 +293,7 @@
     "tags": [
       "Modular",
       "Game Ready",
-      "PBR"
+      ""
     ],
     "polycount": "37k tris",
     "preview": "assets/images/models/Truck.webp",
@@ -272,7 +310,7 @@
     "tags": [
       "Modular",
       "Game Ready",
-      "Solidified"
+      ""
     ],
     "polycount": "37k tris",
     "preview": "assets/images/models/Van.webp",
@@ -289,7 +327,7 @@
     "tags": [
       "Modular",
       "Game Ready",
-      "PBR"
+      ""
     ],
     "polycount": "56.1k tris",
     "preview": "assets/images/models/PickUp.webp",
@@ -306,7 +344,7 @@
     "tags": [
       "Low Poly",
       "Game Ready",
-      "PBR"
+      ""
     ],
     "polycount": "5k tris",
     "preview": "assets/images/models/Windmill.webp",
@@ -323,7 +361,7 @@
     "tags": [
       "Low Poly",
       "Game Ready",
-      "PBR"
+      ""
     ],
     "polycount": "2k tris",
     "preview": "assets/images/models/JerryCan.webp",
@@ -340,7 +378,7 @@
     "tags": [
       "Low Poly",
       "Game Ready",
-      "PBR"
+      ""
     ],
     "polycount": "8k tris",
     "preview": "assets/images/models/Spanner.webp",

@@ -2,8 +2,6 @@ import Hero from "../components/sections/Hero";
 import About from "../components/sections/About";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Showcase from "../components/sections/Showcase";
-// import TechnicalBreakdown from "../components/sections/TechnicalBreakdown"; // lives in /games page only
-// import Skills from "../components/sections/Skills";
 import Education from "../components/sections/Education";
 import Contact from "../components/sections/Contact";
 
@@ -12,10 +10,8 @@ export default function Home() {
     <div>
       <Hero />
       <About />
-      <FeaturedProjects />
       <Showcase />
-      {/* <TechnicalBreakdown /> */}
-      {/* <Skills /> */}
+      <FeaturedProjects />
       <Education />
       <Contact />
     </div>

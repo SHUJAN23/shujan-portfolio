@@ -39,7 +39,7 @@ export default function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative py-20 lg:py-32 bg-[#000000]"
+      className="relative pt-10 pb-8 lg:pt-14 lg:pb-10 bg-[#000000]"
     >
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -136,47 +136,23 @@ export default function About() {
               className="flex flex-col gap-4 text-base text-[#E1DCC9]/60 font-[Inter] leading-relaxed"
             >
               <p>
-                I'm an <strong className="text-[#E1DCC9]/80">MCA student</strong> and 
+                I'm an <strong className="text-[#E1DCC9]/80">MCA graduate</strong> and 
                 aspiring <strong className="text-[#E1DCC9]/80">Technical Artist</strong> passionate 
-                about game development. I specialize in bridging the gap between art and 
+                about game development. I'm interested in bridging the gap between art and 
                 engineering to create optimized, visually compelling interactive experiences.
               </p>
 
               <p>
                 My journey started with <strong className="text-[#E1DCC9]/80">Unity</strong> and{" "}
-                <strong className="text-[#E1DCC9]/80">C#</strong>, where I learned to bring 
-                gameplay systems to life. Over time, I expanded into{" "}
-                <strong className="text-[#E1DCC9]/80">3D art</strong> with Blender, allowing 
-                me to build complete pipelines from concept to playable game.
+                <strong className="text-[#E1DCC9]/80">C#</strong>, and I later expanded into{" "}
+                <strong className="text-[#E1DCC9]/80">3D art</strong> with Blender, where I create 
+                game-ready assets and integrate them into game engines.
               </p>
 
              
             </motion.div>
 
-            {/* CTA */}
-            <motion.div variants={fadeUp} className="pt-2">
-              <a
-                href="/about"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#E1DCC9] hover:text-[#E1DCC9]/70 transition-colors font-[Inter] group"
-              >
-                Learn more about my journey
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </motion.div>
+            {/* CTA removed — already on About page */}
           </motion.div>
 
           {/* ── Right: Expertise Grid ── */}

@@ -79,17 +79,15 @@ export default function Education() {
       <section
         id="education"
         aria-labelledby="education-heading"
-        className="py-20 lg:py-32 bg-[#000000]"
+        className="border-t border-[rgba(225,220,201,0.08)] pt-8 pb-8 lg:pt-10 lg:pb-10 bg-[#000000]"
       >
-        <div aria-hidden="true" className="w-full border-t border-[rgba(225,220,201,0.06)] mb-20 lg:mb-32" />
-
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="mb-14"
+            className="mb-8 lg:mb-10"
           >
             <SectionTitle
               label="Background"
@@ -98,7 +96,7 @@ export default function Education() {
             />
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
 
             {/* ── Education timeline ── */}
             <div>

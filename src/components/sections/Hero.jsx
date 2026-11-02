@@ -30,7 +30,7 @@ const fadeIn = {
 };
 
 // Roles that define the hero tagline
-const roles = ["Unity Game Developer", "Technical Artist", "3D Artist"];
+const roles = ["Aspiring Technical Artist"];
 
 export default function Hero() {
   return (
@@ -108,7 +108,7 @@ export default function Hero() {
               {roles.map((role, i) => (
                 <span
                   key={role}
-                  className="inline-flex items-center gap-2 text-base text-[#E1DCC9]/70 font-[Inter]"
+                  className="inline-flex items-center gap-2 text-lg font-bold text-[#E1DCC9] font-[Space_Grotesk]"
                 >
                   {i !== 0 && (
                     <span
@@ -126,9 +126,7 @@ export default function Hero() {
               variants={fadeUp}
               className="text-base sm:text-lg text-[#E1DCC9]/50 font-[Inter] leading-relaxed max-w-lg"
             >
-              I design and develop interactive 3D game experiences by combining
-              gameplay programming in Unity with optimized 3D asset creation in
-              Blender.
+      I create game-ready 3D assets in Blender and integrate them into Unity and Unreal Engine, combining 3D art with technical implementation for real-time games.
             </motion.p>
 
             {/* CTAs — View Projects hidden, only Download Resume shown */}
@@ -156,20 +154,16 @@ export default function Hero() {
               variants={fadeUp}
               className="flex gap-8 pt-4 border-t border-[rgba(225,220,201,0.1)]"
             >
-              {[
-                // { value: "3+", label: "Years Experience" },  // uncomment when ready
-                // { value: "10+", label: "Projects Built" },   // uncomment when ready
-                { value: "Unity", label: "Primary Engine" },
-              ].map((stat) => (
-                <div key={stat.label} className="flex flex-col gap-1">
-                  <span className="text-2xl font-bold text-[#E1DCC9] font-[Space_Grotesk]">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs text-[#E1DCC9]/40 font-[Inter] tracking-wide">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
+              <div className="flex flex-col gap-1">
+                <span className="text-lg font-bold text-[#E1DCC9] font-[Space_Grotesk]">
+                  Game Engines
+                </span>
+                <span className="text-sm text-[#E1DCC9]/50 font-[Inter] tracking-wide flex items-center gap-2">
+                  Unity
+                  <span aria-hidden="true" className="w-1 h-1 rounded-full bg-[rgba(225,220,201,0.3)]" />
+                  Unreal Engine
+                </span>
+              </div>
             </motion.div>
           </motion.div>
 
