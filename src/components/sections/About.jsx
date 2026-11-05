@@ -7,21 +7,13 @@ const profilePhoto = "/assets/images/ShujanDP.jpeg";
 // Skills/technologies organized by category
 const expertise = [
   {
-    category: "Game Development",
-    items: ["Unity", "C#", "Gameplay Programming", "Level Design"],
+    category: "Technical Art",
+    items: ["Unity", "Unreal Engine", "C# Scripting", "Asset Integration", "Materials & Collider Setup", "Particle Systems"],
   },
   {
-    category: "3D Art",
-    items: ["Blender", "3D Modeling", "Texturing", "UV Mapping"],
+    category: "3D & Environment Art",
+    items: ["Blender", "Hard-Surface Modeling", "Environment & Prop Modeling", "UV Mapping", "Texturing", "Scene Composition"],
   },
-  // {
-  //   category: "Technical Art",
-  //   items: ["Optimization", "Shaders", "VFX", "Lighting"],
-  // },
-  // {
-  //   category: "Web Development",
-  //   items: ["React", "Three.js", "React Three Fiber", "Tailwind CSS"],
-  // },
 ];
 
 // Fade-up animation for stagger effect

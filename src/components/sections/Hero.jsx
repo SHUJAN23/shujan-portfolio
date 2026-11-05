@@ -140,7 +140,7 @@ export default function Hero() {
               </Button> */}
               <Button
                 as="a"
-                href="/SHUJAN__Sep.pdf"
+                href="/assets/SHUJAN_TR.pdf"
                 variant="primary"
                 size="lg"
                 external

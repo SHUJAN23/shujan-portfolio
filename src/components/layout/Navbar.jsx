@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Button
               as="a"
-              href="/SHUJAN__Sep.pdf"
+              href="/assets/SHUJAN_TR.pdf"
               variant="outline"
               size="sm"
               external
@@ -174,7 +174,7 @@ export default function Navbar() {
                 >
                   <Button
                     as="a"
-                    href="/SHUJAN__Sep.pdf"
+                    href="/assets/SHUJAN_TR.pdf"
                     variant="primary"
                     size="md"
                     external
