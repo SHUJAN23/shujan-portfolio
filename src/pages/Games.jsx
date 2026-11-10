@@ -135,7 +135,7 @@ export default function Projects() {
                     {CATEGORIES.find((c) => c.id === selectedCategory)?.icon}
                   </span>
                   <h2 className="text-xl sm:text-2xl font-bold text-[#E1DCC9] font-[Space_Grotesk]">
-                    {selectedCategory}
+                    {CATEGORIES.find((c) => c.id === selectedCategory)?.title ?? selectedCategory}
                   </h2>
                   <span className="text-sm text-[#E1DCC9]/30 font-[Inter]">
                     {filtered.length} {filtered.length === 1 ? "project" : "projects"}
@@ -372,7 +372,7 @@ function ProjectCard({ project, index }) {
 
           {/* Category badge */}
           <span className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase bg-[#000000]/80 text-[#E1DCC9]/70 border border-[rgba(225,220,201,0.15)] rounded-md font-[Inter] backdrop-blur-sm">
-            {project.category}
+            {CATEGORIES.find((c) => c.id === project.category)?.title ?? project.category}
           </span>
 
           {/* WIP badge */}

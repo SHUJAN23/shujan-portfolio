@@ -17,18 +17,6 @@
       "/assets/images/ruins-shot3.png",
       "/assets/images/ruins-shot4.png"
     ],
-    "customAssets": {
-      "label": "Custom Asset Creation (Blender)",
-      "images": [
-        "/assets/images/Projects/Ruins1/AC1.png",
-        "/assets/images/Projects/Ruins1/AC2.png",
-        "/assets/images/Projects/Ruins1/AC3.png",
-        "/assets/images/Projects/Ruins1/AC4.png",
-        "/assets/images/Projects/Ruins1/AC5.png",
-        "/assets/images/Projects/Ruins1/AC6.png",
-        "/assets/images/Projects/Ruins1/AC7.png"
-      ]
-    },
     "breakdown": [],
     "links": {}
   },

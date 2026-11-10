@@ -52,6 +52,65 @@
     "featured": true
   },
   {
+    "id": "BookSelf1",
+    "title": "Medival BookSelf",
+    "category": "Props",
+    "software": [
+      "Blender"
+    ],
+    "tags": [
+      "Low Poly",
+      "Game Ready",
+      "PBR"
+    ],
+    "polycount": "608 tris",
+    "preview": "assets/images/models/BookCaseSelf/BookCaseSelf1.webp",
+    "preview2": "assets/images/models/BookCaseSelf/BookCaseSelf2.webp",
+    "preview3": "assets/images/models/BookCaseSelf/BookCaseSelf3.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "BookSelflLarge",
+    "title": "Medival BookSelf Large",
+    "category": "Props",
+    "software": [
+      "Blender"
+    ],
+    "tags": [
+      "Low Poly",
+      "Game Ready",
+      "PBR"
+    ],
+    "polycount": "608 tris",
+    "preview": "assets/images/models/BookSelfLarge/BookCaseL1.webp",
+    "preview2": "assets/images/models/BookSelfLarge/BookCaseL2.webp",
+    "preview3": "assets/images/models/BookSelfLarge/BookCaseL3.webp",
+    "model": "",
+    "featured": true
+  },
+  {
+    "id": "Cage1",
+    "title": "Medival Cage",
+    "category": "Props",
+    "software": [
+      "Blender"
+    ],
+    "tags": [
+      "Low Poly",
+      "Game Ready",
+      "PBR"
+    ],
+    "polycount": "608 tris",
+    "preview": "assets/images/models/CAGE/Cage1.webp",
+    "preview2": "assets/images/models/CAGE/Cage2.webp",
+    "preview3": "assets/images/models/CAGE/Cage3.webp",
+    "preview4": "assets/images/models/CAGE/Cage4.webp",
+    "preview5": "assets/images/models/CAGE/Cage5.webp",
+    "model": "",
+    "featured": true
+  },
+  {
     "id": "Barrel1",
     "title": "Medival Barrel",
     "category": "Props",
