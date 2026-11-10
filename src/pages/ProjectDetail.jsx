@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, useEffect, useRef, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../components/layout/Container";
 import { getBreakdownIcon } from "../utils/breakdownIcons";
@@ -138,7 +138,7 @@ export default function ProjectDetail() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-[#1F150C] border border-[rgba(225,220,201,0.1)] rounded-2xl p-5 flex flex-col gap-4"
             >
-              <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-[#E1DCC9]/35 font-[Inter]">
+              <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-[#E1DCC9]/70 font-[Inter]">
                 Project Info
               </h3>
               <InfoRow label="Category" value={project.category} />
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="bg-[#1F150C] border border-[rgba(225,220,201,0.1)] rounded-2xl p-5 flex flex-col gap-3"
               >
-                <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-[#E1DCC9]/35 font-[Inter]">
+                <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-[#E1DCC9]/70 font-[Inter]">
                   Technologies
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -211,8 +211,8 @@ function Section({ title, children }) {
       className="flex flex-col gap-4"
     >
       <div className="flex items-center gap-3">
-        <h2 className="text-xs font-semibold tracking-[0.18em] uppercase text-[#E1DCC9]/35 font-[Inter]">{title}</h2>
-        <div className="flex-1 h-px bg-[rgba(225,220,201,0.07)]" />
+        <h2 className="text-xs font-semibold tracking-[0.18em] uppercase text-[#E1DCC9]/70 font-[Inter]">{title}</h2>
+        <div className="flex-1 h-px bg-[rgba(225,220,201,0.12)]" />
       </div>
       {children}
     </motion.div>
@@ -229,16 +229,77 @@ function InfoRow({ label, value }) {
 }
 
 function Gallery({ images, title }) {
-  const [lightbox, setLightbox] = useState(null);
+  // null = closed; number = index of open image
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  // track slide direction for the transition: +1 = going right, -1 = going left
+  const directionRef = useRef(0);
+
+  const isOpen = lightboxIndex !== null;
+
+  const openAt = useCallback((i) => {
+    directionRef.current = 0;
+    setLightboxIndex(i);
+  }, []);
+
+  const close = useCallback(() => setLightboxIndex(null), []);
+
+  const goTo = useCallback((nextIndex) => {
+    setLightboxIndex((prev) => {
+      directionRef.current = nextIndex > prev ? 1 : -1;
+      return nextIndex;
+    });
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) => {
+      directionRef.current = -1;
+      return (prev - 1 + images.length) % images.length;
+    });
+  }, [images.length]);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) => {
+      directionRef.current = 1;
+      return (prev + 1) % images.length;
+    });
+  }, [images.length]);
+
+  // Keyboard navigation + scroll lock
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const saved = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKey(e) {
+      if (e.key === "Escape")      close();
+      if (e.key === "ArrowLeft")   goPrev();
+      if (e.key === "ArrowRight")  goNext();
+    }
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = saved;
+    };
+  }, [isOpen, close, goPrev, goNext]);
+
+  // Slide variants — direction drives enter/exit x offset
+  const slideVariants = {
+    enter: (dir) => ({ opacity: 0, x: dir >= 0 ? 60 : -60 }),
+    center:       { opacity: 1, x: 0 },
+    exit:  (dir) => ({ opacity: 0, x: dir >= 0 ? -60 : 60 }),
+  };
 
   return (
     <>
+      {/* ── Thumbnail grid ── */}
       <div className={`grid gap-3 ${images.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
         {images.map((src, i) => (
           <button
             key={i}
-            onClick={() => setLightbox(src)}
-            aria-label={`View ${title} screenshot ${i + 1}`}
+            onClick={() => openAt(i)}
+            aria-label={`Open ${title} screenshot ${i + 1} of ${images.length}`}
             className="group relative overflow-hidden rounded-xl cursor-zoom-in"
             style={{ height: "220px" }}
           >
@@ -258,33 +319,114 @@ function Gallery({ images, title }) {
         ))}
       </div>
 
+      {/* ── Lightbox / slideshow ── */}
       <AnimatePresence>
-        {lightbox && (
+        {isOpen && (
           <motion.div
+            key="lightbox-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-md"
-            onClick={() => setLightbox(null)}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/92 backdrop-blur-md"
+            onClick={close}
             role="dialog"
             aria-modal="true"
+            aria-label={`${title} screenshots slideshow`}
           >
-            <motion.img
-              initial={{ scale: 0.93 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.93 }}
-              src={lightbox}
-              alt="Full view"
-              className="max-w-full max-h-[85vh] object-contain rounded-xl"
+
+            {/* ── Image area (stops backdrop click) ── */}
+            <div
+              className="relative flex items-center justify-center w-full h-full px-16 sm:px-24"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <AnimatePresence
+                mode="wait"
+                custom={directionRef.current}
+                initial={false}
+              >
+                <motion.img
+                  key={lightboxIndex}
+                  custom={directionRef.current}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  src={images[lightboxIndex]}
+                  alt={`${title} screenshot ${lightboxIndex + 1} of ${images.length}`}
+                  draggable={false}
+                  className="max-w-full max-h-[82vh] object-contain rounded-xl select-none"
+                />
+              </AnimatePresence>
+            </div>
+
+            {/* ── Left arrow ── */}
+            {images.length > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                aria-label="Previous screenshot"
+                className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.18)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 backdrop-blur-sm z-10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* ── Right arrow ── */}
+            {images.length > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                aria-label="Next screenshot"
+                className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.18)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 backdrop-blur-sm z-10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* ── Close button ── */}
             <button
-              onClick={() => setLightbox(null)}
-              aria-label="Close"
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] transition-colors"
+              onClick={(e) => { e.stopPropagation(); close(); }}
+              aria-label="Close lightbox"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 z-10"
             >
               <CloseIcon />
             </button>
+
+            {/* ── Counter ── */}
+            {images.length > 1 && (
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.12)] backdrop-blur-sm">
+                {/* Dot strip */}
+                <div className="flex items-center gap-1.5" role="tablist" aria-label="Screenshot position">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      role="tab"
+                      aria-selected={i === lightboxIndex}
+                      aria-label={`Go to screenshot ${i + 1}`}
+                      onClick={(e) => { e.stopPropagation(); goTo(i); }}
+                      className={`rounded-full transition-all duration-200 ${
+                        i === lightboxIndex
+                          ? "w-5 h-1.5 bg-[#E1DCC9]/80"
+                          : "w-1.5 h-1.5 bg-[rgba(225,220,201,0.25)] hover:bg-[rgba(225,220,201,0.5)]"
+                      }`}
+                    />
+                  ))}
+                </div>
+                {/* Numeric counter */}
+                <span className="text-[11px] font-mono text-[#E1DCC9]/40 tabular-nums">
+                  {lightboxIndex + 1} / {images.length}
+                </span>
+              </div>
+            )}
+
           </motion.div>
         )}
       </AnimatePresence>
