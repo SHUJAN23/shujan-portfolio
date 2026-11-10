@@ -10,6 +10,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Games = lazy(() => import("./pages/Games"));
 const Models = lazy(() => import("./pages/Models"));
 const About = lazy(() => import("./pages/About"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/games" element={<Games />} />
+            <Route path="/games/:id" element={<ProjectDetail />} />
             <Route path="/models" element={<Models />} />
             <Route path="/about" element={<About />} />
           </Routes>

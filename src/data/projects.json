@@ -1,0 +1,170 @@
+[
+  {
+    "id": "ruins1",
+    "title": "Ancient Ruins",
+    "subtitle": "Unreal Engine 5 Environment",
+    "category": "Environment Art",
+    "engine": "Unreal Engine 5",
+    "technologies": ["Unreal Engine 5", "Modular Assets", "Lighting", "Atmosphere", "Post-Processing"],
+    "thumbnail": "/assets/images/ruins-thumb.png",
+    "description": "A cinematic ruins environment built in Unreal Engine 5 featuring ancient stone structures, overgrown vegetation, volumetric lighting and atmospheric post-processing.",
+    "contribution": "Full environment creation — asset placement, modular architecture composition, lighting setup, atmospheric fog, and camera framing.",
+    "featured": true,
+    "status": "complete",
+    "gallery": [
+      "/assets/images/ruins-shot1.png",
+      "/assets/images/ruins-shot2.png",
+      "/assets/images/ruins-shot3.png",
+      "/assets/images/ruins-shot4.png"
+    ],
+    "customAssets": {
+      "label": "Custom Asset Creation (Blender)",
+      "images": [
+        "/assets/images/Projects/Ruins1/AC1.png",
+        "/assets/images/Projects/Ruins1/AC2.png",
+        "/assets/images/Projects/Ruins1/AC3.png",
+        "/assets/images/Projects/Ruins1/AC4.png",
+        "/assets/images/Projects/Ruins1/AC5.png",
+        "/assets/images/Projects/Ruins1/AC6.png",
+        "/assets/images/Projects/Ruins1/AC7.png"
+      ]
+    },
+    "breakdown": [],
+    "links": {}
+  },
+  {
+    "id": "shattered-peaks",
+    "title": "Shattered Peaks",
+    "subtitle": "Unreal Engine 5 Environment",
+    "category": "Environment Art",
+    "engine": "Unreal Engine 5",
+    "technologies": ["Unreal Engine 5", "Landscape", "Mountain Terrain", "Lighting", "Atmosphere"],
+    "thumbnail": "/assets/images/peaks-tumb.png",
+    "description": "A dramatic mountain and rocky terrain environment built in Unreal Engine 5. The scene features large-scale landscape sculpting, natural rock formations, dynamic sky, and cinematic lighting.",
+    "contribution": "Full environment — terrain sculpting, rock placement, foliage, sky and lighting setup, scene composition and cinematic framing.",
+    "featured": true,
+    "status": "complete",
+    "gallery": [
+      "/assets/images/peaks-shot1.png",
+      "/assets/images/peaks-shot2.png",
+      "/assets/images/peaks-shot3.png",
+      "/assets/images/peaks-shot4.png",
+      "/assets/images/peaks-shot5.png",
+      "/assets/images/peaks-shot6.png"
+    ],
+    "breakdown": [],
+    "links": {}
+  },
+  {
+    "id": "lake-landscape",
+    "title": "Lake Landscape",
+    "subtitle": "Unreal Engine 5 Environment",
+    "category": "Environment Art",
+    "engine": "Unreal Engine 5",
+    "technologies": ["Unreal Engine 5", "Landscape", "Foliage", "Lighting", "Water System"],
+    "thumbnail": "/assets/images/lake-thumb.png",
+    "description": "A real-time lake environment built in Unreal Engine 5. The scene features a natural lakeside landscape with foliage, water, atmospheric lighting, and scene composition created entirely by me.",
+    "contribution": "All environment work — landscape sculpting, foliage placement, water system setup, lighting, sky atmosphere, and scene composition.",
+    "featured": true,
+    "status": "complete",
+    "gallery": [
+      "/assets/images/lake-shot1.png",
+      "/assets/images/lake-shot2.png",
+      "/assets/images/lake-shot3.png",
+      "/assets/images/lake-shot4.png",
+      "/assets/images/lake-shot5.png"
+    ],
+    "breakdown": [],
+    "links": {}
+  },
+  {
+    "id": "scrap-wars",
+    "title": "Scrap Wars",
+    "subtitle": "Demolition Derby Survival",
+    "category": "Game Development",
+    "engine": "Unity",
+    "technologies": ["C#", "Unity", "Blender", "AI Systems", "Physics"],
+    "thumbnail": "/assets/images/models/ScrapWars.png",
+    "description": "Vehicle combat survival game featuring AI opponents, a dynamic vehicle damage system, and deep gameplay systems including Racing and Demolition Derby modes.",
+    "contribution": "Sole developer — responsible for all gameplay programming, AI systems, vehicle physics, 3D asset creation in Blender, and scene assembly in Unity.",
+    "featured": true,
+    "status": "complete",
+    "video": { "youtubeId": "_beJFIc_Z0A", "label": "Gameplay Demo", "duration": "1:39" },
+    "gallery": ["/assets/images/models/ScrapWars.png"],
+    "breakdown": [
+      { "id": "ai", "label": "AI Systems", "icon": "cpu", "summary": "State-machine-driven enemy AI with dynamic difficulty scaling.", "details": "Built a finite state machine for opponent AI covering idle, chase, attack, and evade states. Implemented difficulty scaling that adjusts opponent aggression and reaction time based on player survival time. Used Unity's NavMesh for pathfinding within the arena." },
+      { "id": "damage", "label": "Vehicle Damage System", "icon": "wrench", "summary": "Procedural mesh deformation tied to physics collision force.", "details": "Designed a modular damage system where each vehicle section has its own health pool. Collisions above a force threshold trigger mesh deformation using vertex displacement. Visual damage states (dents, sparks, smoke particles) layer progressively as health decreases." },
+      { "id": "physics", "label": "Physics & Handling", "icon": "sliders", "summary": "Custom WheelCollider tuning for arcade-feel vehicle physics.", "details": "Extended Unity's WheelCollider system with custom friction curves to achieve a fun, arcade-style handling model. Added drift mechanics via lateral force blending and implemented a rigidbody centre-of-mass adjustment for consistent flip resistance." },
+      { "id": "optimization", "label": "Performance Optimization", "icon": "zap", "summary": "Maintained 60fps on mid-range hardware through targeted profiling.", "details": "Used Unity Profiler to identify draw call bottlenecks. Implemented static batching for arena geometry, GPU instancing for particle debris, and LOD groups on vehicle meshes." }
+    ],
+    "links": { "gameplay": "https://youtu.be/_beJFIc_Z0A" }
+  },
+  {
+    "id": "hell-drive",
+    "title": "Hell Drive",
+    "subtitle": "Level-Based Driving Game",
+    "category": "Game Development",
+    "engine": "Unity",
+    "technologies": ["C#", "Unity", "Level Design", "Blender"],
+    "thumbnail": "/assets/images/models/HellDrive.png",
+    "description": "Level-based driving game built in Unity. Drive through obstacle-filled environments, collect coins, and minimize vehicle damage to complete each level.",
+    "contribution": "Sole developer — gameplay programming, level design, vehicle physics, collectible systems, and UI implementation.",
+    "featured": true,
+    "status": "complete",
+    "video": { "youtubeId": "sjXG0Yz4eGY", "label": "Level Showcase", "duration": "0:54" },
+    "gallery": ["/assets/images/models/HellDrive.png"],
+    "breakdown": [
+      { "id": "level-design", "label": "Level Design", "icon": "map", "summary": "Iterative blockout-to-final pipeline with focus on flow and pacing.", "details": "Started each level with a grey-box blockout to validate driving flow and checkpoint spacing. Used playtesting data to iteratively widen corners, adjust ramp angles, and redistribute collectibles." },
+      { "id": "collectibles", "label": "Collectible System", "icon": "star", "summary": "Data-driven collectible spawner with persistent save state.", "details": "Built a ScriptableObject-based collectible system. Collected state is persisted via PlayerPrefs with a serialised bitfield for efficient storage." },
+      { "id": "progression", "label": "Progression Design", "icon": "trending-up", "summary": "Unlockable levels and vehicles gated by score thresholds.", "details": "Designed a meta-progression loop where star ratings (1–3 per level) unlock new vehicles and level packs." },
+      { "id": "ui", "label": "UI & Feedback", "icon": "layout", "summary": "Responsive HUD with animated score feedback.", "details": "Built the in-game HUD using Unity UI Toolkit for resolution independence. Implemented animated score popups using DOTween." }
+    ],
+    "links": { "gameplay": "https://youtu.be/sjXG0Yz4eGY" }
+  },
+  {
+    "id": "airborne-bling",
+    "title": "Airborne Bling",
+    "subtitle": "3D Flight Adventure",
+    "category": "Game Development",
+    "engine": "Three.js",
+    "technologies": ["React", "Three.js", "React Three Fiber", "JavaScript", "GLTF"],
+    "thumbnail": "/assets/images/models/Abb1.png",
+    "description": "Browser-based 3D flight game built with React Three Fiber featuring aircraft controls, collectible targets, collision detection, and dynamic environments.",
+    "contribution": "Sole developer — flight controller, collision systems, environment rendering, game UI, and deployment.",
+    "featured": true,
+    "status": "complete",
+    "video": { "youtubeId": "SEfnOgO0OQE", "label": "Gameplay Demo", "duration": "" },
+    "gallery": ["/assets/images/models/Abb1.png"],
+    "breakdown": [
+      { "id": "flight", "label": "Flight System", "icon": "plane", "summary": "Custom aircraft movement and camera-follow mechanics.", "details": "Developed a custom flight controller using local axis transformations for pitch, roll, yaw, and forward movement. Smooth quaternion interpolation for realistic aircraft rotation." },
+      { "id": "gameplay", "label": "Gameplay Systems", "icon": "target", "summary": "Collectible targets, scoring, and progression mechanics.", "details": "Designed collectible coin targets throughout the environment with collision detection, score tracking, and target respawning." },
+      { "id": "collision", "label": "Collision & Boundaries", "icon": "shield", "summary": "Terrain collision detection and restricted-area management.", "details": "Built a raycast-based terrain collision system with boundary detection, warning states, and game-over conditions." },
+      { "id": "environment", "label": "Environment & Rendering", "icon": "globe", "summary": "Immersive 3D world with optimized rendering.", "details": "Integrated GLTF environment assets, HDR lighting, reflective water surfaces, skybox rendering, and post-processing effects." }
+    ],
+    "links": { "gameplay": "https://youtu.be/SEfnOgO0OQE", "live": "https://airborne-bling.vercel.app" }
+  },
+  {
+    "id": "clash-of-champions",
+    "title": "Clash of Champions",
+    "subtitle": "2D Fighting Game",
+    "category": "Game Development",
+    "engine": "Python / Pygame",
+    "technologies": ["Python", "Pygame", "Game Design", "2D Animation"],
+    "thumbnail": "/assets/images/models/COC.png",
+    "description": "A 2D fighting game featuring fast-paced one-on-one combat, unique character attacks, and round-based gameplay inspired by classic arcade fighters.",
+    "contribution": "Sole developer — combat system, sprite animation controller, round progression logic, health UI, and sound integration.",
+    "featured": true,
+    "status": "complete",
+    "video": { "youtubeId": "in86df5bVrU", "label": "Gameplay Demo", "duration": "1:00" },
+    "gallery": ["/assets/images/models/COC.png"],
+    "breakdown": [
+      { "id": "combat", "label": "Combat System", "icon": "swords", "summary": "Responsive fighting mechanics with attacks and health management.", "details": "Implemented movement, jumping, attacking, hit detection, health tracking, and victory conditions." },
+      { "id": "animation", "label": "Character Animation", "icon": "film", "summary": "Sprite-based animation system for all player actions.", "details": "Created an animation controller using sprite sheets for idle, running, jumping, attacking, taking damage, and death states." },
+      { "id": "gameplay", "label": "Round System", "icon": "trophy", "summary": "Best-of-three round progression inspired by arcade fighters.", "details": "Designed a round-based match system that tracks victories, resets player states between rounds, and determines the final winner." },
+      { "id": "ui", "label": "UI & Feedback", "icon": "layout", "summary": "Health bars, round counters, and victory screens.", "details": "Developed a lightweight UI system displaying player health, round wins, and match results." }
+    ],
+    "links": { "gameplay": "https://youtu.be/in86df5bVrU" }
+  }
+]
+
+

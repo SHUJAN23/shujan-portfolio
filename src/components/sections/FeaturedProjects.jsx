@@ -147,10 +147,10 @@ export default function FeaturedProjects() {
           >
             <Link
               to="/games"
-              aria-label="Explore all my game projects"
+              aria-label="Explore my Works"
               className="group inline-flex items-center justify-center gap-3 min-w-[280px] px-10 py-3.5 rounded-full bg-[#E1DCC9] text-[#000000] text-sm font-bold font-[Inter] tracking-[0.08em] uppercase shadow-[0_0_40px_rgba(225,220,201,0.12)] hover:bg-white hover:shadow-[0_0_60px_rgba(225,220,201,0.25)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 text-center"
             >
-              Explore My Games
+              Explore My Works
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -236,7 +236,7 @@ export default function FeaturedProjects() {
               aria-label="Explore all my game projects"
               className="group inline-flex items-center justify-center gap-3 min-w-[260px] px-8 py-3.5 rounded-full bg-[#E1DCC9] text-[#000000] text-sm font-bold font-[Inter] tracking-[0.08em] uppercase shadow-[0_0_30px_rgba(225,220,201,0.12)] hover:bg-white transition-all duration-300 text-center"
             >
-              Explore My Games
+              Explore My Works
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
