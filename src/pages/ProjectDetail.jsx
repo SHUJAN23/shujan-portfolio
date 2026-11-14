@@ -97,11 +97,9 @@ export default function ProjectDetail() {
               </Section>
             )}
 
-            {/* B2. Custom Asset Creation — only when project supplies customAssets.images */}
-            {project.customAssets?.images?.length > 0 && (
-              <Section title={project.customAssets.label || "Custom Asset Creation (Blender)"}>
-                <CustomAssetGallery images={project.customAssets.images} title={project.title} />
-              </Section>
+            {/* B2. Asset Breakdown — per-project, only when assetBreakdown.assets exists */}
+            {project.assetBreakdown?.assets?.length > 0 && (
+              <AssetBreakdownSection data={project.assetBreakdown} projectTitle={project.title} />
             )}
 
             {/* C. My Contributions */}
@@ -434,163 +432,345 @@ function Gallery({ images, title }) {
   );
 }
 
-function CustomAssetGallery({ images, title }) {
-  const [current, setCurrent] = useState(0);
-  const [lightbox, setLightbox] = useState(null);
+// ── AssetBreakdownSection + Slideshow ────────────────────────────────────────
+// Rendered only when project.assetBreakdown.assets exists and has entries.
+// Each asset: { id, name, description, software, category, render, envShot? }
 
-  const prev = useCallback(() => setCurrent((c) => (c - 1 + images.length) % images.length), [images.length]);
-  const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length]);
-
-  // Close lightbox on Escape
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === "Escape") setLightbox(null);
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-  }, [prev, next]);
-
+function AssetBreakdownSection({ data, projectTitle }) {
   return (
-    <>
-      <div className="relative select-none">
-        {/* Main image display */}
-        <div
-          className="relative overflow-hidden rounded-xl bg-[#1F150C] cursor-zoom-in group"
-          style={{ height: "360px" }}
-          onClick={() => setLightbox(current)}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
-          role="button"
-          aria-label={`View ${title} asset image ${current + 1} of ${images.length} full size`}
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.img
-              key={current}
-              src={images[current]}
-              alt={`${title} custom asset ${current + 1}`}
-              loading="lazy"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.25 }}
-              className="absolute inset-0 w-full h-full object-contain"
-              onError={(e) => { e.target.style.display = "none"; }}
-            />
-          </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45 }}
+      className="flex flex-col gap-6"
+    >
+      {/* ── Section eyebrow + divider ── */}
+      <div className="flex items-center gap-3">
+        <h2 className="text-xs font-semibold tracking-[0.18em] uppercase text-[#E1DCC9]/70 font-[Inter] whitespace-nowrap">
+          Asset Breakdown
+        </h2>
+        <div className="flex-1 h-px bg-[rgba(225,220,201,0.12)]" />
+      </div>
 
-          {/* Hover zoom hint */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 flex items-center justify-center rounded-full bg-black/60 border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/70">
-              <ExpandIcon />
-            </span>
-          </div>
-        </div>
-
-        {/* Navigation arrows — only show when there's more than one image */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prev}
-              aria-label="Previous asset image"
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-[#000000]/70 border border-[rgba(225,220,201,0.15)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#000000]/90 hover:border-[rgba(225,220,201,0.35)] transition-all duration-200 backdrop-blur-sm z-10"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next asset image"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-[#000000]/70 border border-[rgba(225,220,201,0.15)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#000000]/90 hover:border-[rgba(225,220,201,0.35)] transition-all duration-200 backdrop-blur-sm z-10"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
-            </button>
-          </>
-        )}
-
-        {/* Image counter */}
-        {images.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000000]/70 border border-[rgba(225,220,201,0.12)] backdrop-blur-sm">
-            <span className="text-[11px] font-mono text-[#E1DCC9]/55">
-              {current + 1} / {images.length}
-            </span>
-          </div>
+      {/* ── Section intro copy ── */}
+      <div className="flex flex-col gap-1.5">
+        <h3 className="text-2xl sm:text-3xl font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-tight">
+          {data.heading}
+        </h3>
+        {data.description && (
+          <p className="text-sm text-[#E1DCC9]/50 font-[Inter] leading-relaxed max-w-[60ch]">
+            {data.description}
+          </p>
         )}
       </div>
 
-      {/* Dot strip for quick scrubbing */}
-      {images.length > 1 && (
-        <div className="flex items-center justify-center gap-1.5 mt-3" role="tablist" aria-label="Asset image navigation">
-          {images.map((_, i) => (
+      {/* ── Slideshow ── */}
+      <AssetBreakdownSlideshow assets={data.assets} projectTitle={projectTitle} />
+    </motion.div>
+  );
+}
+
+function AssetBreakdownSlideshow({ assets, projectTitle }) {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const touchStartX = useRef(null);
+  const total = assets.length;
+
+  const goTo = useCallback((next, dir) => {
+    setDirection(dir);
+    setCurrent(next);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    goTo((current - 1 + total) % total, -1);
+  }, [current, total, goTo]);
+
+  const goNext = useCallback(() => {
+    goTo((current + 1) % total, 1);
+  }, [current, total, goTo]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (lightboxIndex !== null) return; // lightbox handles its own keys
+    function onKey(e) {
+      if (e.key === "ArrowLeft")  goPrev();
+      if (e.key === "ArrowRight") goNext();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [goPrev, goNext, lightboxIndex]);
+
+  // Scroll lock when lightbox open
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const saved = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKey(e) {
+      if (e.key === "Escape")     setLightboxIndex(null);
+      if (e.key === "ArrowLeft")  setLightboxIndex((i) => (i - 1 + total) % total);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i + 1) % total);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = saved;
+    };
+  }, [lightboxIndex, total]);
+
+  // Touch/swipe
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd   = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) delta > 0 ? goNext() : goPrev();
+    touchStartX.current = null;
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({ opacity: 0, x: dir >= 0 ? 48 : -48 }),
+    center:        { opacity: 1, x: 0 },
+    exit:  (dir) => ({ opacity: 0, x: dir >= 0 ? -48 : 48 }),
+  };
+
+  const asset = assets[current];
+
+  // zero-padded counter e.g. "01 / 07"
+  const pad = (n) => String(n).padStart(2, "0");
+
+  return (
+    <>
+      {/* ══ Main slideshow card ══ */}
+      <div
+        className="relative bg-[#120d08] border border-[rgba(225,220,201,0.09)] rounded-2xl overflow-hidden select-none"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* ── Large image area ── */}
+        <div
+          className="relative overflow-hidden cursor-zoom-in group"
+          style={{ height: "clamp(280px, 44vw, 520px)" }}
+          onClick={() => setLightboxIndex(current)}
+          aria-label={`View ${asset.name} full size`}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter") setLightboxIndex(current); }}
+        >
+          <AnimatePresence mode="wait" custom={direction} initial={false}>
+            <motion.img
+              key={asset.id}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              src={asset.render}
+              alt={`${asset.name} — Blender render`}
+              loading="lazy"
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-contain"
+              onError={(e) => { e.target.style.opacity = "0"; }}
+            />
+          </AnimatePresence>
+
+          {/* Subtle dark vignette at bottom for text contrast */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-28 pointer-events-none"
+            style={{ background: "linear-gradient(to top, rgba(10,7,4,0.85) 0%, transparent 100%)" }}
+          />
+
+          {/* Zoom hint */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 w-9 h-9 flex items-center justify-center rounded-full bg-black/60 border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/70">
+              <ExpandIcon />
+            </span>
+          </div>
+
+          {/* Category pill — top left */}
+          {asset.category && (
+            <span className="absolute top-4 left-4 px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase bg-[#000]/70 text-amber-400/80 border border-amber-400/20 rounded-md font-[Inter] backdrop-blur-sm">
+              {asset.category}
+            </span>
+          )}
+
+          {/* Counter — top right */}
+          <span className="absolute top-4 right-4 px-3 py-1 text-[11px] font-mono text-[#E1DCC9]/50 bg-[#000]/70 border border-[rgba(225,220,201,0.1)] rounded-full backdrop-blur-sm tabular-nums">
+            {pad(current + 1)} / {pad(total)}
+          </span>
+        </div>
+
+        {/* ── Info bar below image ── */}
+        <div className="px-6 py-5 flex flex-col gap-1 border-t border-[rgba(225,220,201,0.07)]">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={asset.id + "-info"}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22 }}
+            >
+              <p className="text-base sm:text-lg font-bold text-[#E1DCC9] font-[Space_Grotesk] leading-snug">
+                {asset.name}
+              </p>
+              <p className="text-sm text-[#E1DCC9]/50 font-[Inter] leading-relaxed mt-1 max-w-[62ch]">
+                {asset.description}
+              </p>
+              <div className="flex items-center gap-2 mt-3">
+                <span className="text-[11px] px-2.5 py-1 rounded-md border border-[rgba(225,220,201,0.12)] text-[#E1DCC9]/40 font-[Inter]">
+                  {asset.software}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* ── Prev / Next arrows ── */}
+        {total > 1 && (
+          <>
+            <button
+              onClick={goPrev}
+              aria-label="Previous asset"
+              className="absolute left-3 top-[calc(clamp(280px,44vw,520px)/2)] -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.15)] text-[#E1DCC9]/55 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.35)] transition-all duration-200 backdrop-blur-sm z-10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <button
+              onClick={goNext}
+              aria-label="Next asset"
+              className="absolute right-3 top-[calc(clamp(280px,44vw,520px)/2)] -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.15)] text-[#E1DCC9]/55 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.35)] transition-all duration-200 backdrop-blur-sm z-10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* ══ Thumbnail strip ══ */}
+      {total > 1 && (
+        <div
+          className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+          role="tablist"
+          aria-label="Asset navigation thumbnails"
+        >
+          {assets.map((a, i) => (
+            <button
+              key={a.id}
+              role="tab"
+              aria-selected={i === current}
+              aria-label={`Go to ${a.name}`}
+              onClick={() => goTo(i, i > current ? 1 : -1)}
+              className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 ${
+                i === current
+                  ? "ring-2 ring-amber-400/70 opacity-100"
+                  : "ring-1 ring-[rgba(225,220,201,0.08)] opacity-45 hover:opacity-75 hover:ring-[rgba(225,220,201,0.2)]"
+              }`}
+              style={{ width: "72px", height: "52px" }}
+            >
+              <img
+                src={a.render}
+                alt={a.name}
+                loading="lazy"
+                className="w-full h-full object-contain bg-[#120d08]"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* ══ Dot pagination ══ */}
+      {total > 1 && (
+        <div className="flex items-center justify-center gap-2" role="tablist" aria-label="Asset pagination">
+          {assets.map((_, i) => (
             <button
               key={i}
               role="tab"
               aria-selected={i === current}
-              aria-label={`Go to asset image ${i + 1}`}
-              onClick={() => setCurrent(i)}
+              aria-label={`Asset ${i + 1}`}
+              onClick={() => goTo(i, i > current ? 1 : -1)}
               className={`rounded-full transition-all duration-200 ${
                 i === current
-                  ? "w-5 h-1.5 bg-[#E1DCC9]/70"
-                  : "w-1.5 h-1.5 bg-[rgba(225,220,201,0.2)] hover:bg-[rgba(225,220,201,0.4)]"
+                  ? "w-6 h-1.5 bg-amber-400/80"
+                  : "w-1.5 h-1.5 bg-[rgba(225,220,201,0.2)] hover:bg-[rgba(225,220,201,0.45)]"
               }`}
             />
           ))}
         </div>
       )}
 
-      {/* Lightbox */}
+      {/* ══ Lightbox ══ */}
       <AnimatePresence>
-        {lightbox !== null && (
+        {lightboxIndex !== null && (
           <motion.div
+            key="asset-lightbox"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/92 backdrop-blur-md"
-            onClick={() => setLightbox(null)}
-            onKeyDown={handleKeyDown}
+            transition={{ duration: 0.22 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/94 backdrop-blur-md"
+            onClick={() => setLightboxIndex(null)}
             role="dialog"
             aria-modal="true"
-            aria-label={`${title} asset image ${lightbox + 1} of ${images.length}`}
-            tabIndex={-1}
+            aria-label={`${assets[lightboxIndex].name} full view`}
           >
-            <motion.img
-              key={lightbox}
-              initial={{ scale: 0.93, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.93, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              src={images[lightbox]}
-              alt={`${title} custom asset ${lightbox + 1} full view`}
-              className="max-w-full max-h-[85vh] object-contain rounded-xl"
+            {/* image wrapper — stops backdrop click */}
+            <div
+              className="relative flex items-center justify-center w-full h-full px-14 sm:px-20"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.img
+                  key={"lb-" + lightboxIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.22 }}
+                  src={assets[lightboxIndex].render}
+                  alt={assets[lightboxIndex].name}
+                  draggable={false}
+                  className="max-w-full max-h-[84vh] object-contain rounded-xl select-none"
+                />
+              </AnimatePresence>
 
-            {/* Lightbox counter */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-[#000000]/70 border border-[rgba(225,220,201,0.12)] backdrop-blur-sm">
-              <span className="text-[11px] font-mono text-[#E1DCC9]/55">{lightbox + 1} / {images.length}</span>
+              {/* Asset name overlay */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/70 border border-[rgba(225,220,201,0.12)] backdrop-blur-sm flex items-center gap-3">
+                <span className="text-xs font-semibold text-[#E1DCC9]/70 font-[Space_Grotesk]">
+                  {assets[lightboxIndex].name}
+                </span>
+                <span className="text-[11px] font-mono text-[#E1DCC9]/35 tabular-nums">
+                  {pad(lightboxIndex + 1)} / {pad(total)}
+                </span>
+              </div>
             </div>
 
-            {/* Lightbox arrows */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => { e.stopPropagation(); setLightbox((l) => (l - 1 + images.length) % images.length); }}
-                  aria-label="Previous image"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-                </button>
-                <button
-                  onClick={(e) => { e.stopPropagation(); setLightbox((l) => (l + 1) % images.length); }}
-                  aria-label="Next image"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
-                </button>
-              </>
+            {/* Prev */}
+            {total > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i - 1 + total) % total); }}
+                aria-label="Previous asset"
+                className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.18)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 backdrop-blur-sm z-10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+            )}
+
+            {/* Next */}
+            {total > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex((i) => (i + 1) % total); }}
+                aria-label="Next asset"
+                className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-[#0d0a06]/80 border border-[rgba(225,220,201,0.18)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:bg-[#1F150C] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 backdrop-blur-sm z-10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+              </button>
             )}
 
             {/* Close */}
             <button
-              onClick={() => setLightbox(null)}
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
               aria-label="Close"
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] transition-colors"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[#1F150C] border border-[rgba(225,220,201,0.2)] text-[#E1DCC9]/60 hover:text-[#E1DCC9] hover:border-[rgba(225,220,201,0.4)] transition-all duration-200 z-10"
             >
               <CloseIcon />
             </button>

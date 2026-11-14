@@ -17,6 +17,68 @@
       "/assets/images/ruins-shot3.png",
       "/assets/images/ruins-shot4.png"
     ],
+    "assetBreakdown": {
+      "heading": "Built From Individual Assets.",
+      "description": "A closer look at the 3D assets and props I created and integrated into this environment.",
+      "assets": [
+        {
+          "id": "ac1",
+          "name": "Ruined Stone Pillar",
+          "description": "A weathered stone pillar with chipped edges and aged surface detail, used throughout the ruins as a structural element.",
+          "software": "Blender",
+          "category": "Architecture",
+          "render": "/assets/images/Projects/Ruins1/AC1.png"
+        },
+        {
+          "id": "ac2",
+          "name": "Crumbled Wall Section",
+          "description": "Modular crumbled wall piece designed to tile seamlessly, allowing flexible layout of ruined structures.",
+          "software": "Blender",
+          "category": "Architecture",
+          "render": "/assets/images/Projects/Ruins1/AC2.png"
+        },
+        {
+          "id": "ac3",
+          "name": "Overgrown Stone Block",
+          "description": "Fallen stone block with moss and vegetation growth, adding organic detail and a sense of age to the scene.",
+          "software": "Blender",
+          "category": "Props",
+          "render": "/assets/images/Projects/Ruins1/AC3.png"
+        },
+        {
+          "id": "ac4",
+          "name": "Archway Fragment",
+          "description": "A broken archway segment that hints at the original structure's scale and architectural style.",
+          "software": "Blender",
+          "category": "Architecture",
+          "render": "/assets/images/Projects/Ruins1/AC4.png"
+        },
+        {
+          "id": "ac5",
+          "name": "Scattered Rubble",
+          "description": "A collection of loose stone debris pieces used to dress the ground and add visual weight around larger structures.",
+          "software": "Blender",
+          "category": "Props",
+          "render": "/assets/images/Projects/Ruins1/AC5.png"
+        },
+        {
+          "id": "ac6",
+          "name": "Stone Step Block",
+          "description": "Weathered stepped platform block used to build tiered levels and elevation changes within the ruins.",
+          "software": "Blender",
+          "category": "Architecture",
+          "render": "/assets/images/Projects/Ruins1/AC6.png"
+        },
+        {
+          "id": "ac7",
+          "name": "Decorative Carved Stone",
+          "description": "Ornamental stone piece with carved surface patterns, placed as a detail element to suggest a once-elaborate civilisation.",
+          "software": "Blender",
+          "category": "Detail",
+          "render": "/assets/images/Projects/Ruins1/AC7.png"
+        }
+      ]
+    },
     "breakdown": [],
     "links": {}
   },
